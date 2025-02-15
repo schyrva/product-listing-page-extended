@@ -5,12 +5,9 @@ export interface Product {
   title: string
   price: number
   description: string
-  category: {
-    id: number
-    name: string
-    image: string
-  }
+  category: string
   images: string[]
+  thumbnail: string
 }
 
 interface ProductsState {
@@ -18,7 +15,7 @@ interface ProductsState {
   status: "idle" | "loading" | "succeeded" | "failed"
   error: string | null
   filteredItems: Product[]
-  sortBy: "price" | "name" | null
+  sortBy: "price" | "title" | null
   sortOrder: "asc" | "desc"
   filterCategory: string | null
   filterPriceRange: [number, number] | null
@@ -42,16 +39,16 @@ const initialState: ProductsState = {
 }
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
-  const response = await fetch("https://api.escuelajs.co/api/v1/products")
+  const response = await fetch("https://dummyjson.com/products?limit=0")
   const data = await response.json()
-  return data
+  return data.products
 })
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setSortBy: (state, action: PayloadAction<"price" | "name" | null>) => {
+    setSortBy: (state, action: PayloadAction<"price" | "title" | null>) => {
       state.sortBy = action.payload
       state.filteredItems = sortProducts(state.filteredItems, state.sortBy, state.sortOrder)
     },
@@ -92,7 +89,7 @@ const productsSlice = createSlice({
   },
 })
 
-const sortProducts = (products: Product[], sortBy: "price" | "name" | null, sortOrder: "asc" | "desc"): Product[] => {
+const sortProducts = (products: Product[], sortBy: "price" | "title" | null, sortOrder: "asc" | "desc"): Product[] => {
   if (!sortBy) return products
 
   return [...products].sort((a, b) => {
@@ -111,7 +108,7 @@ const filterProducts = (
   searchQuery: string,
 ): Product[] => {
   return products.filter((product) => {
-    const matchesCategory = !category || product.category.name === category
+    const matchesCategory = !category || product.category === category
     const matchesPriceRange = !priceRange || (product.price >= priceRange[0] && product.price <= priceRange[1])
     const matchesSearchQuery =
       !searchQuery ||

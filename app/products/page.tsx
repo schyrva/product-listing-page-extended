@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import type { AppDispatch, RootState } from "@/lib/store"
@@ -50,11 +48,11 @@ export default function ProductListingPage() {
     } else if (value === "price_desc") {
       dispatch(setSortBy("price"))
       dispatch(setSortOrder("desc"))
-    } else if (value === "name_asc") {
-      dispatch(setSortBy("name"))
+    } else if (value === "title_asc") {
+      dispatch(setSortBy("title"))
       dispatch(setSortOrder("asc"))
-    } else if (value === "name_desc") {
-      dispatch(setSortBy("name"))
+    } else if (value === "title_desc") {
+      dispatch(setSortBy("title"))
       dispatch(setSortOrder("desc"))
     }
   }
@@ -88,7 +86,7 @@ export default function ProductListingPage() {
   const endIndex = startIndex + itemsPerPage
   const currentItems = filteredItems.slice(startIndex, endIndex)
 
-  const categories = Array.from(new Set(items.map((item) => item.category.name)))
+  const categories = Array.from(new Set(items.map((item) => item.category)))
   const maxPrice = Math.max(...items.map((item) => item.price))
 
   return (
@@ -132,8 +130,8 @@ export default function ProductListingPage() {
               <SelectContent>
                 <SelectItem value="price_asc">Price: Low to High</SelectItem>
                 <SelectItem value="price_desc">Price: High to Low</SelectItem>
-                <SelectItem value="name_asc">Name: A to Z</SelectItem>
-                <SelectItem value="name_desc">Name: Z to A</SelectItem>
+                <SelectItem value="title_asc">Title: A to Z</SelectItem>
+                <SelectItem value="title_desc">Title: Z to A</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -144,7 +142,7 @@ export default function ProductListingPage() {
               <Link href={`/products/${product.id}`} key={product.id}>
                 <div className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
                   <Image
-                    src={product.images[0] || "/placeholder.svg"}
+                    src={product.thumbnail || "/placeholder.svg"}
                     alt={product.title}
                     width={300}
                     height={300}
