@@ -1,11 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: [
-      "dummyjson.com",
-      "cdn.dummyjson.com"
-    ],
-  },
-}
+import type { NextConfig } from "next";
 
-module.exports = nextConfig
+const nextConfig: NextConfig = {
+  images: {
+    domains: ["fakestoreapi.com"],
+  },
+};
+
+export default nextConfig;
