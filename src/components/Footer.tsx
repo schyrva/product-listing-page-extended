@@ -8,8 +8,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-gray-800">About ShopNest</h3>
             <p className="text-gray-600">
-              ShopNest is your one-stop shop for all your needs. We offer a wide range of high-quality products at
-              competitive prices.
+            Product Listing Page test project. Next.js app with Redux: Browse, filter, and sort products. React and shadcn/ui components.
             </p>
           </div>
           <div>
@@ -29,13 +28,14 @@ export default function Footer() {
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4 text-gray-800">Contact Us</h3>
-            <p className="text-gray-600">123 Shop Street, City, Country</p>
-            <p className="text-gray-600">Email: info@shopnest.com</p>
-            <p className="text-gray-600">Phone: +1 234 567 890</p>
+            <p className="text-gray-600">Ivano-Frankivsk, Ukraine</p>
+            <p className="text-gray-600">Email: <a href="mailto:stanislav.chyrva@gmail.com">stanislav.chyrva@gmail.com</a></p>
+            <p className="text-gray-600">Phone: <a href="tel:+380666023036">+380666023036</a></p>
+            <p className="text-gray-600">LinkedIn: <a href="https://www.linkedin.com/in/stanislav-chyrva-3a3b24347/" target="_blank" rel="noopener noreferrer">Stanislav Chyrva</a></p>
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-          <p className="text-gray-600">&copy; {new Date().getFullYear()} ShopNest. All rights reserved.</p>
+          <p className="text-gray-600">&copy; {new Date().getFullYear()} Test Project. All rights reserved.</p>
         </div>
       </div>
     </footer>
