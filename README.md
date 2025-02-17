@@ -41,7 +41,6 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser.
 ---
 
 ## 📞 Contact
-👤 **Stanislav Chyrva**
 
 📧 **Email:** stanislav.chyrva@gmail.com
 
