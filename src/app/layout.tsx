@@ -8,8 +8,8 @@ import "@/app/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ShopNest - Your One-Stop Shop",
-  description: "Discover amazing products at unbeatable prices",
+  title: "Product Listing Page Test Task",
+  description: "Product Listing Page using Next.js, Redux Toolkit, Shadcn UI, and Tailwind CSS",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
