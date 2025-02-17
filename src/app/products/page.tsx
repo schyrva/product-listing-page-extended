@@ -1,11 +1,23 @@
 "use client";
+
+import { useProducts } from "@/app/hooks/useProducts";
 import ProductList from "@/components/products/ProductList";
 import FilterSort from "@/components/filters/FilterSort";
 import SearchBar from "@/components/search/SearchBar";
-import { useProducts } from "../hooks/useProducts";
+import ProductSkeleton from "@/components/ui/ProductSkeleton";
+import { useState, useEffect } from "react";
 
 export default function ProductsPage() {
   const { products, isLoading } = useProducts();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || isLoading) {
+    return <ProductSkeleton />;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -21,11 +33,7 @@ export default function ProductsPage() {
         </aside>
 
         <div className="w-full md:w-3/4">
-          {isLoading ? (
-            <div>Loading products...</div>
-          ) : (
-            <ProductList products={products} />
-          )}
+          <ProductList products={products} />
         </div>
       </div>
     </div>
