@@ -1,14 +1,14 @@
-"use client"
-import { useDebouncedCallback } from "use-debounce"
-import { Input } from "@/components/ui/input"
-import { useDispatch } from "react-redux"
-import { setSearchTerm } from "@/store/productsSlice"
+"use client";
+import { useDebouncedCallback } from "use-debounce";
+import { Input } from "@/components/ui/input";
+import { useDispatch } from "react-redux";
+import { setSearchTerm } from "@/store/productsSlice";
 
 export default function SearchBar() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const debouncedSearch = useDebouncedCallback((value: string) => {
-    dispatch(setSearchTerm(value))
-  }, 300)
+    dispatch(setSearchTerm(value));
+  }, 300);
 
   return (
     <Input
@@ -17,5 +17,5 @@ export default function SearchBar() {
       onChange={(e) => debouncedSearch(e.target.value)}
       className="w-full"
     />
-  )
+  );
 }

@@ -9,10 +9,11 @@ export default function Footer() {
           <div id="about">
             <h3 className="text-lg font-semibold mb-4">About BestShop</h3>
             <p>
-              Next.js e-commerce demo with Redux, filtering, and modern UI components.
+              Next.js e-commerce demo with Redux, filtering, and modern UI
+              components.
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -29,10 +30,35 @@ export default function Footer() {
           <div id="contact">
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <p>Ivano-Frankivsk, Ukraine</p>
-            <p>Email: <a href="mailto:stanislav.chyrva@gmail.com">stanislav.chyrva@gmail.com</a></p>
-            <p>Phone: <a href="tel:+380666023036">+380666023036</a></p>
-            <p>Telegram: <a href="https://t.me/StanislavChyrva" target="_blank" rel="noopener noreferrer">@StanislavChyrva</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/stanislav-chyrva-3a3b24347/" target="_blank" rel="noopener noreferrer">Stanislav Chyrva</a></p>
+            <p>
+              Email:{" "}
+              <a href="mailto:stanislav.chyrva@gmail.com">
+                stanislav.chyrva@gmail.com
+              </a>
+            </p>
+            <p>
+              Phone: <a href="tel:+380666023036">+380666023036</a>
+            </p>
+            <p>
+              Telegram:{" "}
+              <a
+                href="https://t.me/StanislavChyrva"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @StanislavChyrva
+              </a>
+            </p>
+            <p>
+              LinkedIn:{" "}
+              <a
+                href="https://www.linkedin.com/in/stanislav-chyrva-3a3b24347/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Stanislav Chyrva
+              </a>
+            </p>
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-border text-center">

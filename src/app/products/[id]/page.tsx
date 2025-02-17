@@ -3,7 +3,11 @@ import type { Product } from "@/types/product";
 import ProductDetails from "@/components/products/ProductDetails";
 import { notFound } from "next/navigation";
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const resolvedParams = await params;
 
   if (!resolvedParams?.id) {

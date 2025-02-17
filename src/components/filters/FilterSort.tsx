@@ -2,10 +2,21 @@
 
 import { useTheme } from "next-themes";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilter, setSort, type SortBy, type SortOrder } from "@/store/productsSlice";
+import {
+  setFilter,
+  setSort,
+  type SortBy,
+  type SortOrder,
+} from "@/store/productsSlice";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { PRODUCT_CATEGORIES, SORT_OPTIONS } from "@/constants/categories";
 import type { RootState } from "@/store/store";
 
@@ -37,7 +48,9 @@ export default function FilterSort() {
         <Label>Category</Label>
         <Select
           value={filter.category}
-          onValueChange={(value) => dispatch(setFilter({ ...filter, category: value }))}
+          onValueChange={(value) =>
+            dispatch(setFilter({ ...filter, category: value }))
+          }
         >
           <SelectTrigger className="h-12 px-4">
             <SelectValue placeholder="Select category" />
@@ -64,7 +77,12 @@ export default function FilterSort() {
         />
         <div className="flex justify-between text-sm">
           <span>${filter.priceRange[0]}</span>
-          <span>${filter.priceRange[1] === MAX_PRICE ? `${MAX_PRICE}+` : filter.priceRange[1]}</span>
+          <span>
+            $
+            {filter.priceRange[1] === MAX_PRICE
+              ? `${MAX_PRICE}+`
+              : filter.priceRange[1]}
+          </span>
         </div>
       </div>
 

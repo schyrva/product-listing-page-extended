@@ -59,38 +59,37 @@ export default function ProductList({ products }: { products?: Product[] }) {
       </div>
 
       <ReactPaginate
-  previousLabel={
-    <Button variant="outline" size="icon" className="h-10 w-10">
-      <ChevronLeft className="w-5 h-5" />
-    </Button>
-  }
-  nextLabel={
-    <Button variant="outline" size="icon" className="h-10 w-10">
-      <ChevronRight className="w-5 h-5" />
-    </Button>
-  }
-  pageCount={pageCount}
-  onPageChange={({ selected }) => setCurrentPage(selected)}
-  containerClassName="flex justify-center items-center mt-8 gap-2"
-  previousClassName="rounded-md"
-  nextClassName="rounded-md"
-  disabledClassName="opacity-50 cursor-not-allowed"
-  renderOnZeroPageCount={null}
-  pageRangeDisplayed={3}
-  marginPagesDisplayed={1}
-  breakLabel="..."
-  pageLabelBuilder={(page) => (
-    <Button
-      variant="outline"
-      className={`h-10 w-10 flex items-center justify-center ${
-        currentPage + 1 === page ? "bg-black text-white" : ""
-      }`}
-    >
-      {page}
-    </Button>
-  )}
-/>
-
+        previousLabel={
+          <Button variant="outline" size="icon" className="h-10 w-10">
+            <ChevronLeft className="w-5 h-5" />
+          </Button>
+        }
+        nextLabel={
+          <Button variant="outline" size="icon" className="h-10 w-10">
+            <ChevronRight className="w-5 h-5" />
+          </Button>
+        }
+        pageCount={pageCount}
+        onPageChange={({ selected }) => setCurrentPage(selected)}
+        containerClassName="flex justify-center items-center mt-8 gap-2"
+        previousClassName="rounded-md"
+        nextClassName="rounded-md"
+        disabledClassName="opacity-50 cursor-not-allowed"
+        renderOnZeroPageCount={null}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={1}
+        breakLabel="..."
+        pageLabelBuilder={(page) => (
+          <Button
+            variant="outline"
+            className={`h-10 w-10 flex items-center justify-center ${
+              currentPage + 1 === page ? "bg-black text-white" : ""
+            }`}
+          >
+            {page}
+          </Button>
+        )}
+      />
     </div>
   );
 }

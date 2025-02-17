@@ -9,10 +9,15 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Product Listing Page Test Task",
-  description: "Product Listing Page using Next.js, Redux Toolkit, Shadcn UI, and Tailwind CSS",
+  description:
+    "Product Listing Page using Next.js, Redux Toolkit, Shadcn UI, and Tailwind CSS",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -25,5 +30,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Providers>
       </body>
     </html>
-  )
+  );
 }
