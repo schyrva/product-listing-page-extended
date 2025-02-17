@@ -1,22 +1,25 @@
-import ProductList from "../components/ProductList"
-import FilterSort from "../components/FilterSort"
-import SearchBar from "../components/SearchBar"
+import ProductList from "@/components/products/ProductList"
+import { API } from "@/lib/api"
 
-export default function Home() {
+export default async function HomePage() {
+  const response = await fetch(API.getProducts())
+  const products = await response.json()
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">Our Products</h1>
-      <div className="mb-6">
-        <SearchBar />
-      </div>
-      <div className="flex flex-col md:flex-row gap-8">
-        <aside className="w-full md:w-1/4">
-          <FilterSort />
-        </aside>
-        <div className="w-full md:w-3/4">
-          <ProductList />
+    <div className="min-h-screen">
+      <section className="bg-blue-50 py-20 px-4">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">ShopNest</h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Discover amazing products at unbeatable prices
+          </p>
         </div>
-      </div>
+      </section>
+
+      <section className="container mx-auto py-16 px-4">
+        <h2 className="text-3xl font-bold mb-8 text-center">Featured Products</h2>
+        <ProductList products={products.slice(0, 6)} />
+      </section>
     </div>
   )
 }

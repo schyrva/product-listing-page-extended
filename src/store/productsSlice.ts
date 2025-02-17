@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from "@reduxjs/toolkit"
 import type { Product } from "../types/product"
 
+export type SortBy = "price" | "title" | "rating"
+export type SortOrder = "asc" | "desc"
+
 const MAX_PRICE = 1000
 
 interface ProductsState {
@@ -12,12 +15,10 @@ interface ProductsState {
     priceRange: [number, number]
   }
   sort: {
-    by: "price" | "title" | "rating"
-    order: "asc" | "desc"
+    by: SortBy
+    order: SortOrder
   }
   searchTerm: string
-  favorites: number[]
-  basket: { [key: number]: number }
 }
 
 const initialState: ProductsState = {
@@ -33,8 +34,6 @@ const initialState: ProductsState = {
     order: "asc",
   },
   searchTerm: "",
-  favorites: [],
-  basket: {},
 }
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
@@ -49,22 +48,11 @@ const productsSlice = createSlice({
     setFilter: (state, action: PayloadAction<{ category: string; priceRange: [number, number] }>) => {
       state.filter = action.payload
     },
-    setSort: (state, action: PayloadAction<{ by: "price" | "title" | "rating"; order: "asc" | "desc" }>) => {
+    setSort: (state, action: PayloadAction<{ by: SortBy; order: SortOrder }>) => {
       state.sort = action.payload
     },
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload
-    },
-    toggleFavorite: (state, action: PayloadAction<number>) => {
-      const index = state.favorites.indexOf(action.payload)
-      if (index > -1) {
-        state.favorites.splice(index, 1)
-      } else {
-        state.favorites.push(action.payload)
-      }
-    },
-    addToBasket: (state, action: PayloadAction<number>) => {
-      state.basket[action.payload] = (state.basket[action.payload] || 0) + 1
     },
   },
   extraReducers: (builder) => {
@@ -83,5 +71,5 @@ const productsSlice = createSlice({
   },
 })
 
-export const { setFilter, setSort, setSearchTerm, toggleFavorite, addToBasket } = productsSlice.actions
+export const { setFilter, setSort, setSearchTerm } = productsSlice.actions
 export default productsSlice.reducer
