@@ -8,7 +8,7 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const debouncedSearch = useDebouncedCallback((value: string) => {
     dispatch(setSearchTerm(value));
-  }, 300);
+  }, 500);
 
   return (
     <Input
