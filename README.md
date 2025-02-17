@@ -5,7 +5,7 @@ A **simple e-commerce product listing page with few extra features** built with 
 ---
 
 ## 🎯 Live Demo  
-🔗 [View Demo](https://product-listing-page-extended-4bequagti-schyrvas-projects.vercel.app/)
+🔗 [View Demo](https://product-listing-page-extended.vercel.app/)
 
 ---
 
