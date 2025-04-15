@@ -57,18 +57,22 @@ export default function ProductDetails({
                 key={i}
                 className={`w-5 h-5 ${
                   i < Math.round(product.rating.rate)
-                    ? "text-yellow-400 fill-current"
-                    : "text-gray-300"
+                    ? "text-accent fill-current"
+                    : "text-muted"
                 }`}
               />
             ))}
-            <span className="ml-2 text-sm text-gray-600">
+            <span className="ml-2 text-sm text-muted-foreground">
               ({product.rating.count} reviews)
             </span>
           </div>
         </div>
-        <p className="text-gray-600 text-justify">{product.description}</p>
-        <p className="text-sm text-gray-500">Category: {product.category}</p>
+        <p className="text-muted-foreground text-justify">
+          {product.description}
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Category: {product.category}
+        </p>
         <div className="flex flex-wrap gap-4 justify-between sm:justify-start">
           <Button
             onClick={() => router.back()}

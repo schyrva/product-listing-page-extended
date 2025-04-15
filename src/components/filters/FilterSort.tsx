@@ -39,11 +39,7 @@ export default function FilterSort() {
   };
 
   return (
-    <div
-      className={`space-y-8 p-8 rounded-lg shadow-md transition-colors ${
-        theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-900"
-      }`}
-    >
+    <div className="space-y-8 p-8 rounded-lg shadow-md transition-colors bg-card text-card-foreground">
       <div className="space-y-3">
         <Label>Category</Label>
         <Select
