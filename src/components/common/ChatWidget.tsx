@@ -32,7 +32,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.8 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="bg-card rounded-xl shadow-2xl w-[350px] mb-4 overflow-hidden border"
+            className="absolute bottom-16 right-0 bg-card rounded-xl shadow-2xl w-[350px] overflow-hidden border"
           >
             <div className="bg-primary text-white p-4 flex justify-between items-center">
               <h3 className="font-semibold">Chat with Us</h3>
@@ -72,9 +72,7 @@ export default function ChatWidget() {
 
       <motion.button
         onClick={toggleChat}
-        className={`rounded-full p-4 ${
-          isOpen ? "bg-red-500" : "bg-primary"
-        } text-white shadow-lg flex items-center justify-center`}
+        className="absolute bottom-0 right-0 rounded-full p-4 bg-primary text-white shadow-lg flex items-center justify-center w-14 h-14"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={
@@ -95,11 +93,7 @@ export default function ChatWidget() {
             : {}
         }
       >
-        {isOpen ? (
-          <X className="h-6 w-6" />
-        ) : (
-          <MessageCircle className="h-6 w-6" />
-        )}
+        <MessageCircle className="h-6 w-6" />
       </motion.button>
     </div>
   );
