@@ -8,11 +8,15 @@ import MobileMenu from "./MobileMenu";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
+import { useSelector } from "react-redux";
+import { selectCartItemCount } from "@/store/cartSlice";
+import { selectFavoriteItemCount } from "@/store/favoritesSlice";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [cartItems, setCartItems] = useState(3); // Mock cart items count
+  const cartItemCount = useSelector(selectCartItemCount);
+  const favoriteItemCount = useSelector(selectFavoriteItemCount);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,26 +114,48 @@ export default function Header() {
               </Button>
             </motion.div>
 
-            <motion.div whileTap={{ scale: 0.9 }}>
-              <Button variant="ghost" size="icon">
-                <Heart className="h-5 w-5" />
-              </Button>
+            <motion.div whileTap={{ scale: 0.9 }} className="relative">
+              <Link href="/favorites">
+                <Button variant="ghost" size="icon">
+                  <Heart className="h-5 w-5" />
+                  {favoriteItemCount > 0 && (
+                    <motion.span
+                      className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 15,
+                      }}
+                    >
+                      {favoriteItemCount}
+                    </motion.span>
+                  )}
+                </Button>
+              </Link>
             </motion.div>
 
             <motion.div whileTap={{ scale: 0.9 }} className="relative">
-              <Button variant="ghost" size="icon">
-                <ShoppingCart className="h-5 w-5" />
-                {cartItems > 0 && (
-                  <motion.span
-                    className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                  >
-                    {cartItems}
-                  </motion.span>
-                )}
-              </Button>
+              <Link href="/cart">
+                <Button variant="ghost" size="icon">
+                  <ShoppingCart className="h-5 w-5" />
+                  {cartItemCount > 0 && (
+                    <motion.span
+                      className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 15,
+                      }}
+                    >
+                      {cartItemCount}
+                    </motion.span>
+                  )}
+                </Button>
+              </Link>
             </motion.div>
 
             <ThemeSwitcher />

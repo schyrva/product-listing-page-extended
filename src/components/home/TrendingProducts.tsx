@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, Heart, Eye } from "lucide-react";
 import { Product } from "@/types/product";
 import { useInView } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, selectIsInCart } from "@/store/cartSlice";
+import { toggleFavorite, selectIsFavorite } from "@/store/favoritesSlice";
 
 interface TrendingProductsProps {
   products: Product[];
@@ -27,7 +30,6 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
 
     const scroll = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
 
       if (containerRef.current) {
         containerRef.current.scrollLeft += 0.5; // Slow scroll speed
@@ -75,7 +77,8 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            Discover our most popular products that everyone's talking about
+            Discover our most popular products that everyone&apos;s talking
+            about
           </motion.p>
         </div>
 
@@ -131,7 +134,7 @@ function ProductCard({ product }: { product: Product }) {
         />
 
         {/* Quick actions */}
-        <AnimatedActions isVisible={isHovered} />
+        <AnimatedActions isVisible={isHovered} productId={product.id} />
 
         {/* Price badge */}
         <div className="absolute top-3 left-3 bg-accent text-accent-foreground py-1 px-3 rounded-full text-sm font-semibold">
@@ -157,7 +160,13 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-function AnimatedActions({ isVisible }: { isVisible: boolean }) {
+function AnimatedActions({
+  isVisible,
+  productId,
+}: {
+  isVisible: boolean;
+  productId: number;
+}) {
   return (
     <motion.div
       className="absolute inset-0 bg-black/40 flex items-center justify-center gap-3"
@@ -165,10 +174,80 @@ function AnimatedActions({ isVisible }: { isVisible: boolean }) {
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.2 }}
     >
-      <ActionButton icon={<ShoppingCart className="w-4 h-4" />} delay={0} />
-      <ActionButton icon={<Heart className="w-4 h-4" />} delay={0.1} />
-      <ActionButton icon={<Eye className="w-4 h-4" />} delay={0.2} />
+      <CartActionButton productId={productId} delay={0} />
+      <FavoriteActionButton productId={productId} delay={0.1} />
+      <Link href={`/products/${productId}`}>
+        <ActionButton icon={<Eye className="w-4 h-4" />} delay={0.2} />
+      </Link>
     </motion.div>
+  );
+}
+
+function CartActionButton({
+  productId,
+  delay,
+}: {
+  productId: number;
+  delay: number;
+}) {
+  const dispatch = useDispatch();
+  const isInCart = useSelector(selectIsInCart(productId));
+
+  return (
+    <motion.button
+      className={`rounded-full p-2 transition-colors ${
+        isInCart
+          ? "bg-green-500 text-white hover:bg-green-600"
+          : "bg-white text-gray-900 hover:bg-primary hover:text-white"
+      }`}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 17,
+        delay: delay,
+      }}
+      onClick={() => dispatch(addToCart(productId))}
+    >
+      <ShoppingCart className="w-4 h-4" />
+    </motion.button>
+  );
+}
+
+function FavoriteActionButton({
+  productId,
+  delay,
+}: {
+  productId: number;
+  delay: number;
+}) {
+  const dispatch = useDispatch();
+  const isFavorite = useSelector(selectIsFavorite(productId));
+
+  return (
+    <motion.button
+      className={`rounded-full p-2 transition-colors ${
+        isFavorite
+          ? "bg-red-500 text-white hover:bg-red-600"
+          : "bg-white text-gray-900 hover:bg-primary hover:text-white"
+      }`}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 17,
+        delay: delay,
+      }}
+      onClick={() => dispatch(toggleFavorite(productId))}
+    >
+      <Heart className="w-4 h-4" />
+    </motion.button>
   );
 }
 

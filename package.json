@@ -27,6 +27,7 @@
     "react-medium-image-zoom": "^5.2.13",
     "react-paginate": "^8.3.0",
     "react-redux": "^9.2.0",
+    "swiper": "^11.2.6",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^10.0.4",

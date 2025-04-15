@@ -49,8 +49,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Button>
         </Link>
         <div className="flex items-center gap-2">
-          <FavouriteButton />
-          <CartButton />
+          <FavouriteButton productId={product.id} />
+          <CartButton productId={product.id} />
         </div>
       </CardFooter>
     </Card>
