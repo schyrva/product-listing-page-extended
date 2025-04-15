@@ -80,17 +80,19 @@ export default function ChatWidget() {
             ? {
                 y: [0, -10, 0],
               }
-            : {}
+            : { y: 0 }
         }
         transition={
           !isOpen
             ? {
-                repeat: Infinity,
-                repeatType: "loop",
                 duration: 2,
-                repeatDelay: 5,
+                repeat: Infinity,
+                repeatDelay: 3,
+                times: [0, 0.5, 1],
+                type: "tween",
+                ease: "easeInOut",
               }
-            : {}
+            : { type: "spring", stiffness: 300 }
         }
       >
         <MessageCircle className="h-6 w-6" />
