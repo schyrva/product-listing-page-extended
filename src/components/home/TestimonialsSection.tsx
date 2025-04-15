@@ -182,6 +182,7 @@ export default function TestimonialsSection() {
       transition: {
         delay: prefersReducedMotion ? 0.1 : 0.3,
         duration: prefersReducedMotion ? 0.2 : 0.5,
+        ease: "easeOut",
       },
     },
     exit: {
@@ -189,6 +190,7 @@ export default function TestimonialsSection() {
       y: prefersReducedMotion ? 0 : 10,
       transition: {
         duration: prefersReducedMotion ? 0.1 : 0.3,
+        ease: "easeIn",
       },
     },
   };
@@ -334,7 +336,7 @@ export default function TestimonialsSection() {
               <motion.button
                 whileHover={{ scale: prefersReducedMotion ? 1 : 1.1 }}
                 whileTap={{ scale: prefersReducedMotion ? 0.95 : 0.9 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "tween", duration: 0.2 }}
                 onClick={handlePrev}
                 className="bg-primary/10 hover:bg-primary/20 rounded-full p-2 text-primary"
                 aria-label="Previous testimonial"
@@ -357,6 +359,7 @@ export default function TestimonialsSection() {
                     aria-current={index === current ? "true" : "false"}
                     whileHover={{ scale: prefersReducedMotion ? 1 : 1.2 }}
                     whileTap={{ scale: prefersReducedMotion ? 0.95 : 0.9 }}
+                    transition={{ type: "tween", duration: 0.2 }}
                   />
                 ))}
               </div>
@@ -364,7 +367,7 @@ export default function TestimonialsSection() {
               <motion.button
                 whileHover={{ scale: prefersReducedMotion ? 1 : 1.1 }}
                 whileTap={{ scale: prefersReducedMotion ? 0.95 : 0.9 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: "tween", duration: 0.2 }}
                 onClick={handleNext}
                 className="bg-primary/10 hover:bg-primary/20 rounded-full p-2 text-primary"
                 aria-label="Next testimonial"

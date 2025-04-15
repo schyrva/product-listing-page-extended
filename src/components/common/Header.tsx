@@ -5,9 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   ShoppingCart,
   Heart,
-  Search,
   User,
-  X,
   LogOut,
   Settings,
   UserPlus,
@@ -15,8 +13,7 @@ import {
 import { MAIN_NAV } from "@/constants/navigation";
 import MobileMenu from "./MobileMenu";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { motion, AnimatePresence } from "framer-motion";
-import { Input } from "@/components/ui/input";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { selectCartItemCount } from "@/store/cartSlice";
 import { selectFavoriteItemCount } from "@/store/favoritesSlice";
@@ -31,7 +28,6 @@ import {
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const cartItemCount = useSelector(selectCartItemCount);
   const favoriteItemCount = useSelector(selectFavoriteItemCount);
 
@@ -66,33 +62,6 @@ export default function Header() {
           </motion.div>
         </Link>
 
-        <AnimatePresence>
-          {searchOpen ? (
-            <motion.div
-              className="absolute inset-x-0 top-0 bg-background flex items-center justify-center h-full px-4 md:px-8"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Input
-                type="text"
-                placeholder="Search products..."
-                className="w-full max-w-2xl"
-                autoFocus
-              />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="ml-2"
-                onClick={() => setSearchOpen(false)}
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-
         <nav className="hidden md:flex items-center space-x-6">
           {MAIN_NAV.map((item, index) => (
             <motion.div
@@ -115,16 +84,6 @@ export default function Header() {
             </motion.div>
           ))}
           <div className="flex items-center gap-2">
-            <motion.div whileTap={{ scale: 0.9 }}>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setSearchOpen(true)}
-              >
-                <Search className="h-5 w-5" />
-              </Button>
-            </motion.div>
-
             <motion.div whileTap={{ scale: 0.9 }}>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

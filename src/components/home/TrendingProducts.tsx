@@ -101,8 +101,7 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
                 transition={{
                   duration: 0.5,
                   delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 100,
+                  type: "tween",
                 }}
               >
                 <ProductCard product={product} />
@@ -205,9 +204,8 @@ function CartActionButton({
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{
-        type: "spring",
-        stiffness: 400,
-        damping: 17,
+        type: "tween",
+        duration: 0.3,
         delay: delay,
       }}
       onClick={() => dispatch(addToCart(productId))}
@@ -239,9 +237,8 @@ function FavoriteActionButton({
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{
-        type: "spring",
-        stiffness: 400,
-        damping: 17,
+        type: "tween",
+        duration: 0.3,
         delay: delay,
       }}
       onClick={() => dispatch(toggleFavorite(productId))}
@@ -266,9 +263,8 @@ function ActionButton({
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{
-        type: "spring",
-        stiffness: 400,
-        damping: 17,
+        type: "tween",
+        duration: 0.3,
         delay: delay,
       }}
     >

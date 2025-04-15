@@ -86,7 +86,7 @@ export default function FloatingNotification() {
       animate(
         scope.current,
         { x: -100, opacity: 0 },
-        { type: "spring", stiffness: 200, damping: 20 }
+        { type: "tween", duration: 0.3 }
       ).then(() => {
         setIsVisible(false);
         setDismissed(true);
@@ -107,8 +107,8 @@ export default function FloatingNotification() {
       x: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        damping: 20,
+        type: "tween",
+        duration: 0.5,
         staggerChildren: 0.1,
         delayChildren: 0.2,
       },
@@ -146,7 +146,7 @@ export default function FloatingNotification() {
               className="absolute -top-2 -right-2 bg-primary text-white rounded-full w-7 h-7 flex items-center justify-center shadow-lg"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.3, type: "spring" }}
+              transition={{ delay: 0.3, type: "tween", duration: 0.3 }}
               ref={bellRef}
             >
               <Bell className="w-4 h-4" />
@@ -185,6 +185,7 @@ export default function FloatingNotification() {
                       className="text-muted-foreground hover:text-foreground"
                       whileHover={{ scale: 1.2, rotate: 90 }}
                       whileTap={{ scale: 0.9 }}
+                      transition={{ type: "tween", duration: 0.2 }}
                     >
                       <X className="w-4 h-4" />
                     </motion.button>

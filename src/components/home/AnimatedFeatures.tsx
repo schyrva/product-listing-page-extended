@@ -114,8 +114,8 @@ function FeatureCard({ feature, index }) {
       whileHover={{
         scale: 1.02,
         transition: {
-          type: "spring",
-          stiffness: 400,
+          type: "tween",
+          duration: 0.3,
         },
       }}
     >
@@ -126,7 +126,7 @@ function FeatureCard({ feature, index }) {
           backgroundColor: "hsl(var(--primary))",
           color: "white",
         }}
-        transition={{ type: "spring", stiffness: 300 }}
+        transition={{ type: "tween", duration: 0.3 }}
       >
         {feature.icon}
         <motion.div
@@ -137,14 +137,16 @@ function FeatureCard({ feature, index }) {
               ? {
                   scale: [0, 1.5, 1],
                   opacity: [0, 0.5, 0],
+                  transition: {
+                    duration: 1.5,
+                    times: [0, 0.5, 1],
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                    ease: "easeInOut",
+                  },
                 }
               : {}
           }
-          transition={{
-            repeat: hovered ? Infinity : 0,
-            duration: 1.5,
-            repeatDelay: 0.5,
-          }}
         />
       </motion.div>
       <motion.h3
