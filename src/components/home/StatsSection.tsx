@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import AnimatedCounter from "./AnimatedCounter";
 import { Package, ShoppingBag, Star, Users } from "lucide-react";
 import { useRef } from "react";
+import Link from "next/link";
 
 export default function StatsSection() {
   const sectionRef = useRef(null);
@@ -163,7 +164,7 @@ export default function StatsSection() {
         </motion.div>
 
         <motion.div
-          className="relative mt-16 pt-16 border-t border-muted flex flex-wrap justify-center"
+          className="relative mt-16 pt-16 border-t border-muted flex flex-col items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -178,7 +179,7 @@ export default function StatsSection() {
           >
             Join thousands of satisfied customers
           </motion.div>
-          <div className="flex space-x-4 items-center">
+          <div className="flex space-x-4 items-center mb-6">
             {[1, 2, 3, 4, 5].map((star) => (
               <motion.div
                 key={star}
@@ -200,6 +201,38 @@ export default function StatsSection() {
               Average customer rating: 4.8/5
             </motion.p>
           </div>
+
+          <motion.blockquote
+            className="text-center max-w-2xl italic text-muted-foreground mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 2.2 }}
+          >
+            "Shopping with BestShop transformed my online shopping experience.
+            Their product quality and customer service are unmatched in the
+            industry!"
+            <footer className="text-sm font-medium mt-2 text-foreground">
+              — Emma Thompson, Verified Customer
+            </footer>
+          </motion.blockquote>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 2.4, type: "spring" }}
+          >
+            <Link href="/products">
+              <motion.button
+                className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Start Shopping Today
+              </motion.button>
+            </Link>
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.section>
