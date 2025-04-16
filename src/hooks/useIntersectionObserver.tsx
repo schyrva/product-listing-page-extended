@@ -14,12 +14,12 @@ interface IntersectionObserverOptions {
  * @param options - IntersectionObserver options with additional triggerOnce parameter
  * @returns [ref, isIntersecting] - Ref to attach to the element and boolean indicating if element is visible
  */
-export function useIntersectionObserver<T extends Element = HTMLDivElement>({
+export function useIntersectionObserver<T extends Element>({
   root = null,
   rootMargin = "0px",
   threshold = 0,
   triggerOnce = false,
-}: IntersectionObserverOptions = {}): [RefObject<T>, boolean] {
+}: IntersectionObserverOptions = {}): [RefObject<T | null>, boolean] {
   const ref = useRef<T>(null);
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
 
@@ -41,14 +41,8 @@ export function useIntersectionObserver<T extends Element = HTMLDivElement>({
       }
     };
 
-    let observer = new IntersectionObserver(onIntersect, {
-      root,
-      rootMargin,
-      threshold,
-    });
-
     // Create an observer with the given options
-    observer = new IntersectionObserver(onIntersect, {
+    const observer = new IntersectionObserver(onIntersect, {
       root,
       rootMargin,
       threshold,
@@ -59,9 +53,7 @@ export function useIntersectionObserver<T extends Element = HTMLDivElement>({
 
     // Clean up
     return () => {
-      if (observer) {
-        observer.disconnect();
-      }
+      observer.disconnect();
     };
   }, [root, rootMargin, threshold, triggerOnce]);
 
