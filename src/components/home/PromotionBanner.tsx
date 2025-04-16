@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,8 +26,8 @@ export default function PromotionBanner() {
     setEndDate(getEndDate());
   }, []);
 
-  // Calculate time left
-  function calculateTimeLeft() {
+  // Calculate time left - memoized with useCallback to prevent infinite rerender
+  const calculateTimeLeft = useCallback(() => {
     if (!endDate) return initialTimeLeft;
 
     const difference = endDate.getTime() - new Date().getTime();
@@ -43,7 +43,7 @@ export default function PromotionBanner() {
     }
 
     return newTimeLeft;
-  }
+  }, [endDate]);
 
   // Pulse animation for the second indicator
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function PromotionBanner() {
     return () => clearInterval(interval);
   }, [endDate]);
 
-  // Update countdown
+  // Update countdown - removed timeLeft from dependencies to prevent infinite loop
   useEffect(() => {
     if (!endDate) return; // Only start countdown after endDate is set
 
@@ -66,14 +66,14 @@ export default function PromotionBanner() {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [timeLeft, endDate]);
+  }, [endDate, calculateTimeLeft]);
 
   // Initialize the first calculation after endDate is set
   useEffect(() => {
     if (endDate) {
       setTimeLeft(calculateTimeLeft());
     }
-  }, [endDate]);
+  }, [endDate, calculateTimeLeft]);
 
   return (
     <section className="py-8 md:py-16 overflow-hidden">
@@ -105,7 +105,7 @@ export default function PromotionBanner() {
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
                 Get <span className="font-bold text-2xl">25% OFF</span> on all
-                products when you shop now. Don't miss this exclusive deal!
+                products when you shop now. Don&apos;t miss this exclusive deal!
               </motion.p>
 
               <motion.div

@@ -209,9 +209,9 @@ export default function StatsSection() {
             viewport={{ once: true }}
             transition={{ delay: 2.2 }}
           >
-            "Shopping with BestShop transformed my online shopping experience.
-            Their product quality and customer service are unmatched in the
-            industry!"
+            &ldquo;Shopping with BestShop transformed my online shopping
+            experience. Their product quality and customer service are unmatched
+            in the industry!&rdquo;
             <footer className="text-sm font-medium mt-2 text-foreground">
               — Emma Thompson, Verified Customer
             </footer>
