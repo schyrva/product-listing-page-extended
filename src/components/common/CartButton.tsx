@@ -24,9 +24,18 @@ const CartButton = ({ productId }: CartButtonProps) => {
   };
 
   return (
-    <Button variant="outline" onClick={handleToggleCart} disabled={!productId}>
+    <Button
+      variant="outline"
+      onClick={handleToggleCart}
+      disabled={!productId}
+      className="group"
+    >
       <ShoppingCart
-        className={isInCart ? "text-green-700 fill-green-700" : "text-gray-500"}
+        className={
+          isInCart
+            ? "text-green-700 fill-green-700"
+            : "text-gray-700 group-hover:text-green-600 transition-colors"
+        }
       />
     </Button>
   );

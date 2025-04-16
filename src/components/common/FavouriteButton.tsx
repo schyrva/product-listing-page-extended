@@ -23,9 +23,14 @@ const FavouriteButton = ({ productId }: FavouriteButtonProps) => {
       variant="outline"
       onClick={handleToggleFavorite}
       disabled={!productId}
+      className="group"
     >
       <Heart
-        className={isFavourite ? "text-red-700 fill-red-700" : "text-gray-500"}
+        className={
+          isFavourite
+            ? "text-red-700 fill-red-700"
+            : "text-gray-700 group-hover:text-red-600 transition-colors"
+        }
       />
     </Button>
   );
