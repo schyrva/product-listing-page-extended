@@ -96,8 +96,8 @@ export default function NotFound() {
           className="text-lg text-muted-foreground mb-8"
           variants={itemVariants}
         >
-          Looks like you've ventured into uncharted territory. The page you're
-          looking for seems to have gone shopping elsewhere.
+          Sorry, we couldn&apos;t find the page you&apos;re looking for. It
+          might have been moved or you&apos;ve mistyped the URL.
         </motion.p>
 
         <motion.div variants={itemVariants}>

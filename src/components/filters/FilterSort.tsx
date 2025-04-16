@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setFilter,
@@ -25,7 +24,6 @@ const MAX_PRICE = 1000;
 export default function FilterSort() {
   const dispatch = useDispatch();
   const { filter, sort } = useSelector((state: RootState) => state.products);
-  const { theme } = useTheme();
 
   const handlePriceRangeChange = (values: number[]) => {
     if (values.length === 2) {

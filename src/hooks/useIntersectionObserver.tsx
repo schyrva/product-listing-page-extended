@@ -29,8 +29,6 @@ export function useIntersectionObserver<T extends Element = HTMLDivElement>({
     // If ref not attached or no IntersectionObserver support, exit early
     if (!node || typeof IntersectionObserver === "undefined") return;
 
-    let observer: IntersectionObserver;
-
     const onIntersect = (entries: IntersectionObserverEntry[]) => {
       const entry = entries[0];
 
@@ -42,6 +40,12 @@ export function useIntersectionObserver<T extends Element = HTMLDivElement>({
         observer.disconnect();
       }
     };
+
+    let observer = new IntersectionObserver(onIntersect, {
+      root,
+      rootMargin,
+      threshold,
+    });
 
     // Create an observer with the given options
     observer = new IntersectionObserver(onIntersect, {

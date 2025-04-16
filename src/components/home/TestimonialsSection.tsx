@@ -76,6 +76,12 @@ export default function TestimonialsSection() {
     return window.innerWidth < 768;
   }, []);
 
+  // Define handleNext before using it in useEffect
+  const handleNext = useCallback(() => {
+    setDirection(1);
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
   // Only auto-advance testimonials when in view, not paused, and not being touched
   useEffect(() => {
     if (!paused && isInView && !isTouching) {
@@ -84,7 +90,7 @@ export default function TestimonialsSection() {
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [current, paused, isInView, isTouching]);
+  }, [current, paused, isInView, isTouching, handleNext]);
 
   // Adapt animations based on reduced motion preference and device
   const transitions = useMemo(() => {
@@ -115,17 +121,12 @@ export default function TestimonialsSection() {
     return isMobile ? 50 : 100;
   }, [prefersReducedMotion, isMobile]);
 
-  const handleNext = useCallback(() => {
-    setDirection(1);
-    setCurrent((prev) => (prev + 1) % testimonials.length);
-  }, []);
-
   const handlePrev = useCallback(() => {
     setDirection(-1);
     setCurrent(
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
-  }, [testimonials.length]);
+  }, []);
 
   const handleDragEnd = (
     event: MouseEvent | TouchEvent | PointerEvent,

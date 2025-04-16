@@ -1,6 +1,6 @@
-# 🛒 Product Listing Page (Test Task)
+# 🛒 BestShop
 
-A **modern e-commerce product listing page with rich UI features** built with **Next.js 15, Redux Toolkit, ShadCN UI, and Tailwind CSS**.
+A **modern e-commerce platform with rich UI features** built with **Next.js 15, Redux Toolkit, ShadCN UI, and Tailwind CSS**.
 
 ---
 

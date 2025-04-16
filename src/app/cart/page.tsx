@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState, startTransition, useTransition } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart, Trash, ChevronLeft, ChevronRight } from "lucide-react";
@@ -21,7 +21,6 @@ export default function CartPage() {
   const cartItems = useSelector(selectCartItems);
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isPending, startCartTransition] = useTransition();
 
   useEffect(() => {
     const fetchCartProducts = async () => {
@@ -57,16 +56,11 @@ export default function CartPage() {
   const handleQuantityChange = (productId: number, newQuantity: number) => {
     if (newQuantity < 1) return;
 
-    // Use startTransition to prevent suspense fallback from showing
-    startCartTransition(() => {
-      dispatch(updateQuantity({ productId, quantity: newQuantity }));
-    });
+    dispatch(updateQuantity({ productId, quantity: newQuantity }));
   };
 
   const handleRemoveItem = (productId: number) => {
-    startCartTransition(() => {
-      dispatch(removeFromCart(productId));
-    });
+    dispatch(removeFromCart(productId));
   };
 
   const calculateSubtotal = () => {
@@ -97,7 +91,7 @@ export default function CartPage() {
             <ShoppingCart className="h-16 w-16 text-muted-foreground" />
             <h2 className="text-2xl font-semibold">Your cart is empty</h2>
             <p className="text-muted-foreground">
-              Looks like you haven't added anything to your cart yet.
+              Looks like you haven&apos;t added anything to your cart yet.
             </p>
             <Link href="/products">
               <Button className="mt-4">Start Shopping</Button>
@@ -115,13 +109,6 @@ export default function CartPage() {
   return (
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
-
-      {/* Subtle loading indicator when updating cart */}
-      {isPending && (
-        <div className="fixed top-0 left-0 right-0 h-1 z-50">
-          <div className="h-full bg-primary animate-pulse rounded-full opacity-70"></div>
-        </div>
-      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
@@ -160,7 +147,7 @@ export default function CartPage() {
                           onClick={() =>
                             handleQuantityChange(product.id, quantity - 1)
                           }
-                          disabled={quantity <= 1 || isPending}
+                          disabled={quantity <= 1}
                         >
                           <ChevronLeft className="h-4 w-4" />
                         </Button>
@@ -176,7 +163,6 @@ export default function CartPage() {
                           }}
                           className="h-8 w-14 mx-1 text-center"
                           min="1"
-                          disabled={isPending}
                         />
 
                         <Button
@@ -186,7 +172,6 @@ export default function CartPage() {
                           onClick={() =>
                             handleQuantityChange(product.id, quantity + 1)
                           }
-                          disabled={isPending}
                         >
                           <ChevronRight className="h-4 w-4" />
                         </Button>
@@ -196,7 +181,6 @@ export default function CartPage() {
                         variant="ghost"
                         size="icon"
                         onClick={() => handleRemoveItem(product.id)}
-                        disabled={isPending}
                       >
                         <Trash className="h-4 w-4 text-red-500" />
                       </Button>
@@ -219,11 +203,8 @@ export default function CartPage() {
               variant="outline"
               className="text-red-500"
               onClick={() => {
-                startCartTransition(() => {
-                  dispatch(clearCart());
-                });
+                dispatch(clearCart());
               }}
-              disabled={isPending}
             >
               Clear Cart
             </Button>
@@ -262,6 +243,12 @@ export default function CartPage() {
                   </p>
                 )}
               </div>
+            </div>
+
+            <div className="flex justify-between mb-4">
+              <p className="text-md text-gray-600 dark:text-gray-300">
+                We don&apos;t process payment yet
+              </p>
             </div>
 
             <Button className="w-full mt-6">Proceed to Checkout</Button>

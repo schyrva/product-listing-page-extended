@@ -184,8 +184,8 @@ export default function AboutPage() {
                 What started as a small catalog of carefully selected products
                 has evolved into a comprehensive e-commerce platform offering
                 thousands of items across multiple categories. Throughout our
-                growth, we've maintained our commitment to quality and customer
-                experience.
+                growth, we&apos;ve maintained our commitment to quality and
+                customer experience.
               </motion.p>
               <motion.p variants={itemVariants}>
                 Today, BestShop serves customers worldwide, connecting them with
@@ -196,8 +196,8 @@ export default function AboutPage() {
                 variants={itemVariants}
                 className="border-l-4 border-primary pl-4 my-6 italic text-muted-foreground"
               >
-                "We don't just sell products; we curate experiences that bring
-                joy and value to our customers' lives."
+                &quot;We don&apos;t just sell products; we curate experiences
+                that bring joy and value to our customers&apos; lives.&quot;
                 <footer className="text-sm font-medium mt-2 text-foreground">
                   — Emma Richards, Founder
                 </footer>
@@ -255,7 +255,7 @@ export default function AboutPage() {
               </p>
               <p className="mt-4">
                 We strive to be more than just a store; we aim to be a trusted
-                partner in our customers' journey to discover products that
+                partner in our customers&apos; journey to discover products that
                 enhance their lives.
               </p>
             </motion.div>
