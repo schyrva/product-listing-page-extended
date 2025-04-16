@@ -8,9 +8,15 @@ import {
   RotateCcw,
   HeadphonesIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 
-const features = [
+interface Feature {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+const features: Feature[] = [
   {
     icon: <ShieldCheck className="w-10 h-10" />,
     title: "Secure Shopping",
@@ -61,7 +67,7 @@ const itemVariants = {
   },
 };
 
-function FeatureCard({ feature, index }) {
+function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
   const [hovered, setHovered] = useState(false);
 
   // Mouse position for 3D effect
@@ -77,7 +83,7 @@ function FeatureCard({ feature, index }) {
   const rotateY = useTransform(springX, [-100, 100], [-10, 10]);
 
   // Handle mousemove to update x and y values
-  const handleMouseMove = (event) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!hovered) return;
 
     const rect = event.currentTarget.getBoundingClientRect();
