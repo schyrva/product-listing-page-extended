@@ -181,6 +181,7 @@ export default function TestimonialsSection() {
       opacity: 1,
       y: 0,
       transition: {
+        type: "tween",
         delay: prefersReducedMotion ? 0.1 : 0.3,
         duration: prefersReducedMotion ? 0.2 : 0.5,
         ease: "easeOut",
@@ -190,6 +191,7 @@ export default function TestimonialsSection() {
       opacity: 0,
       y: prefersReducedMotion ? 0 : 10,
       transition: {
+        type: "tween",
         duration: prefersReducedMotion ? 0.1 : 0.3,
         ease: "easeIn",
       },
