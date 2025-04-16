@@ -2,29 +2,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  ShoppingCart,
-  Heart,
-  User,
-  LogOut,
-  Settings,
-  UserPlus,
-} from "lucide-react";
+import { ShoppingCart, Heart } from "lucide-react";
 import { MAIN_NAV } from "@/constants/navigation";
 import MobileMenu from "./MobileMenu";
 import ThemeSwitcher from "./ThemeSwitcher";
+import UserDropdownMenu from "./UserDropdownMenu";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { selectCartItemCount } from "@/store/cartSlice";
 import { selectFavoriteItemCount } from "@/store/favoritesSlice";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,12 +40,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="text-4xl italic font-bold hover:text-primary">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            BestShop
-          </motion.div>
+          BestShop
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
@@ -84,36 +65,7 @@ export default function Header() {
             </motion.div>
           ))}
           <div className="flex items-center gap-2">
-            <motion.div whileTap={{ scale: 0.9 }}>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <UserPlus className="mr-2 h-4 w-4" />
-                    <span>Sign up</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </motion.div>
+            <UserDropdownMenu />
 
             <motion.div whileTap={{ scale: 0.9 }} className="relative">
               <Link href="/favorites">

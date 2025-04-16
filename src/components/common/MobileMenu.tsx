@@ -5,26 +5,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import {
-  Menu,
-  User,
-  Settings,
-  LogOut,
-  Heart,
-  ShoppingCart,
-  UserPlus,
-} from "lucide-react";
+import { Menu, Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { MAIN_NAV } from "@/constants/navigation";
 import ThemeSwitcher from "./ThemeSwitcher";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import UserDropdownMenu from "./UserDropdownMenu";
 import { useSelector } from "react-redux";
 import { selectCartItemCount } from "@/store/cartSlice";
 import { selectFavoriteItemCount } from "@/store/favoritesSlice";
@@ -43,34 +28,7 @@ export default function MobileMenu() {
       <SheetContent side="right" className="w-[300px]">
         <SheetTitle>Menu</SheetTitle>
         <div className="flex justify-end items-center space-x-2 mb-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                <span>Profile</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <UserPlus className="mr-2 h-4 w-4" />
-                <span>Sign up</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <UserDropdownMenu />
 
           <Link href="/favorites" className="relative">
             <Button variant="ghost" size="icon">
