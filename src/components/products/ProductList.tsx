@@ -81,9 +81,11 @@ export default function ProductList({ products }: { products?: Product[] }) {
         breakLabel="..."
         pageLabelBuilder={(page) => (
           <Button
-            variant="outline"
+            variant={currentPage + 1 === page ? "default" : "outline"}
             className={`h-10 w-10 flex items-center justify-center ${
-              currentPage + 1 === page ? "bg-black text-white" : ""
+              currentPage + 1 === page
+                ? "bg-primary text-primary-foreground"
+                : ""
             }`}
           >
             {page}
