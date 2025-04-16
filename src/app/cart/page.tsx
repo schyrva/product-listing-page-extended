@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition, useTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart, Trash, ChevronLeft, ChevronRight } from "lucide-react";
@@ -21,6 +21,7 @@ export default function CartPage() {
   const cartItems = useSelector(selectCartItems);
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPending, startCartTransition] = useTransition();
 
   useEffect(() => {
     const fetchCartProducts = async () => {
@@ -55,11 +56,17 @@ export default function CartPage() {
 
   const handleQuantityChange = (productId: number, newQuantity: number) => {
     if (newQuantity < 1) return;
-    dispatch(updateQuantity({ productId, quantity: newQuantity }));
+
+    // Use startTransition to prevent suspense fallback from showing
+    startCartTransition(() => {
+      dispatch(updateQuantity({ productId, quantity: newQuantity }));
+    });
   };
 
   const handleRemoveItem = (productId: number) => {
-    dispatch(removeFromCart(productId));
+    startCartTransition(() => {
+      dispatch(removeFromCart(productId));
+    });
   };
 
   const calculateSubtotal = () => {
@@ -69,7 +76,8 @@ export default function CartPage() {
     }, 0);
   };
 
-  if (isLoading) {
+  // Show initial loading state only when first loading the cart
+  if (isLoading && products.length === 0) {
     return (
       <div className="container mx-auto px-4 py-16">
         <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
@@ -108,6 +116,13 @@ export default function CartPage() {
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
 
+      {/* Subtle loading indicator when updating cart */}
+      {isPending && (
+        <div className="fixed top-0 left-0 right-0 h-1 z-50">
+          <div className="h-full bg-primary animate-pulse rounded-full opacity-70"></div>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <div className="space-y-4">
@@ -145,7 +160,7 @@ export default function CartPage() {
                           onClick={() =>
                             handleQuantityChange(product.id, quantity - 1)
                           }
-                          disabled={quantity <= 1}
+                          disabled={quantity <= 1 || isPending}
                         >
                           <ChevronLeft className="h-4 w-4" />
                         </Button>
@@ -161,6 +176,7 @@ export default function CartPage() {
                           }}
                           className="h-8 w-14 mx-1 text-center"
                           min="1"
+                          disabled={isPending}
                         />
 
                         <Button
@@ -170,6 +186,7 @@ export default function CartPage() {
                           onClick={() =>
                             handleQuantityChange(product.id, quantity + 1)
                           }
+                          disabled={isPending}
                         >
                           <ChevronRight className="h-4 w-4" />
                         </Button>
@@ -179,6 +196,7 @@ export default function CartPage() {
                         variant="ghost"
                         size="icon"
                         onClick={() => handleRemoveItem(product.id)}
+                        disabled={isPending}
                       >
                         <Trash className="h-4 w-4 text-red-500" />
                       </Button>
@@ -200,7 +218,12 @@ export default function CartPage() {
             <Button
               variant="outline"
               className="text-red-500"
-              onClick={() => dispatch(clearCart())}
+              onClick={() => {
+                startCartTransition(() => {
+                  dispatch(clearCart());
+                });
+              }}
+              disabled={isPending}
             >
               Clear Cart
             </Button>

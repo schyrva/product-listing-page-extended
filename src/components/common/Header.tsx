@@ -39,11 +39,14 @@ export default function Header() {
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link href="/" className="text-4xl italic font-bold hover:text-primary">
+        <Link
+          href="/"
+          className="text-3xl font-bold text-primary hover:opacity-90 transition-opacity"
+        >
           BestShop
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-8">
           {MAIN_NAV.map((item, index) => (
             <motion.div
               key={item.href}
@@ -53,67 +56,79 @@ export default function Header() {
             >
               <Link
                 href={item.href}
-                className="hover:text-primary relative group"
+                className="font-medium text-foreground/80 hover:text-primary transition-colors duration-200"
               >
                 {item.label}
-                <motion.span
-                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full"
-                  transition={{ duration: 0.3 }}
-                  whileHover={{ width: "100%" }}
-                />
               </Link>
             </motion.div>
           ))}
-          <div className="flex items-center gap-2">
-            <UserDropdownMenu />
-
-            <motion.div whileTap={{ scale: 0.9 }} className="relative">
-              <Link href="/favorites">
-                <Button variant="ghost" size="icon">
-                  <Heart className="h-5 w-5" />
-                  {favoriteItemCount > 0 && (
-                    <motion.span
-                      className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 15,
-                      }}
-                    >
-                      {favoriteItemCount}
-                    </motion.span>
-                  )}
-                </Button>
-              </Link>
-            </motion.div>
-
-            <motion.div whileTap={{ scale: 0.9 }} className="relative">
-              <Link href="/cart">
-                <Button variant="ghost" size="icon">
-                  <ShoppingCart className="h-5 w-5" />
-                  {cartItemCount > 0 && (
-                    <motion.span
-                      className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 15,
-                      }}
-                    >
-                      {cartItemCount}
-                    </motion.span>
-                  )}
-                </Button>
-              </Link>
-            </motion.div>
-
-            <ThemeSwitcher />
-          </div>
         </nav>
+
+        <div className="hidden md:flex items-center gap-3">
+          <UserDropdownMenu />
+
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative"
+          >
+            <Link href="/favorites">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full bg-background hover:bg-muted"
+              >
+                <Heart className="h-5 w-5" />
+                {favoriteItemCount > 0 && (
+                  <motion.span
+                    className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 15,
+                    }}
+                  >
+                    {favoriteItemCount}
+                  </motion.span>
+                )}
+              </Button>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative"
+          >
+            <Link href="/cart">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full bg-background hover:bg-muted"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {cartItemCount > 0 && (
+                  <motion.span
+                    className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 15,
+                    }}
+                  >
+                    {cartItemCount}
+                  </motion.span>
+                )}
+              </Button>
+            </Link>
+          </motion.div>
+
+          <ThemeSwitcher />
+        </div>
 
         <div className="md:hidden">
           <MobileMenu />
