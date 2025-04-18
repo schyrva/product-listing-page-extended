@@ -21,7 +21,6 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.2 });
 
-  // Auto scroll when not hovering
   useEffect(() => {
     if (!containerRef.current || isHovering) return;
 
@@ -32,9 +31,8 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
       if (!startTime) startTime = timestamp;
 
       if (containerRef.current) {
-        containerRef.current.scrollLeft += 0.5; // Slow scroll speed
+        containerRef.current.scrollLeft += 0.5;
 
-        // Reset scroll position when reaching the end
         if (
           containerRef.current.scrollLeft >=
           containerRef.current.scrollWidth - containerRef.current.clientWidth
@@ -84,7 +82,7 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
 
         <div
           ref={containerRef}
-          className="flex overflow-x-auto pb-8 no-scrollbar"
+          className="relative flex overflow-x-auto pb-8 no-scrollbar"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           style={{ scrollBehavior: "smooth" }}
@@ -129,13 +127,12 @@ function ProductCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-contain p-4"
         />
 
-        {/* Quick actions */}
         <AnimatedActions isVisible={isHovered} productId={product.id} />
 
-        {/* Price badge */}
         <div className="absolute top-3 left-3 bg-accent text-accent-foreground py-1 px-3 rounded-full text-sm font-semibold">
           ${product.price.toFixed(2)}
         </div>

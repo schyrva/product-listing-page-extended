@@ -48,9 +48,7 @@ export default function Footer() {
   return (
     <footer className="bg-background border-t border-border transition-colors pt-16 pb-8">
       <div className="container mx-auto px-4">
-        {/* Upper section with main content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand section */}
           <div className="space-y-6">
             <Link href="/" className="text-3xl italic font-bold">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
@@ -61,7 +59,7 @@ export default function Footer() {
               Next.js e-commerce demo with Redux, filtering, and modern UI
               components.
             </p>
-            {/* Social media icons */}
+
             <div className="flex gap-4 pt-2">
               {iconLinks.map((link, i) => (
                 <motion.a
@@ -80,7 +78,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div className="space-y-6">
             <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
               Quick Links
@@ -102,7 +99,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div id="contact" className="space-y-6">
             <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
               Contact
@@ -128,7 +124,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Newsletter */}
           <div className="space-y-6">
             <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
               Newsletter
@@ -152,10 +147,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-10 border-t border-border opacity-30" />
 
-        {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>© {currentYear} BestShop. All rights reserved.</p>
           <div className="flex gap-6">

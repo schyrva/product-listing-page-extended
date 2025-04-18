@@ -17,7 +17,6 @@ export default function ChatWidget() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim()) {
-      // In a real app, you would send the message to a backend service
       console.log("Message sent:", message);
       setMessage("");
     }

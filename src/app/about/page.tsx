@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 export default function AboutPage() {
   const [activeValue, setActiveValue] = useState(0);
 
-  // Company values with icons and descriptions
   const values = [
     {
       title: "Quality First",
@@ -38,7 +37,6 @@ export default function AboutPage() {
     },
   ];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -69,7 +67,6 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/10 to-accent/5 py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <svg
@@ -138,7 +135,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -155,6 +151,7 @@ export default function AboutPage() {
                   src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                   alt="BestShop founding team"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                   className="object-cover"
                 />
               </div>
@@ -207,7 +204,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
       <section className="py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
           <motion.div

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Home, RefreshCw } from "lucide-react";
 
 export default function NotFound() {
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -30,7 +29,6 @@ export default function NotFound() {
     },
   };
 
-  // 404 text animation
   const numberVariants = {
     initial: { scale: 0.8, opacity: 0 },
     animate: {
@@ -44,7 +42,6 @@ export default function NotFound() {
     },
   };
 
-  // Rotating gear animation
   const gearVariants = {
     initial: { rotate: 0 },
     animate: {

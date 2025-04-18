@@ -13,13 +13,12 @@ export default function StatsSection() {
     offset: ["start end", "end start"],
   });
 
-  // Create smoother scroll progress
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 80,
+    damping: 20,
+    restDelta: 0.01,
   });
 
-  // Create parallax effect for the section
   const y = useTransform(smoothProgress, [0, 1], [100, -100]);
   const opacity = useTransform(
     smoothProgress,
@@ -55,7 +54,6 @@ export default function StatsSection() {
     },
   ];
 
-  // Create variants for staggered animations of cards
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -92,8 +90,8 @@ export default function StatsSection() {
   return (
     <motion.section
       ref={sectionRef}
-      className="py-16 border-y border-muted overflow-hidden"
-      style={{ opacity }}
+      className="py-16 border-y border-muted overflow-hidden relative"
+      style={{ opacity, position: "relative" }}
     >
       <motion.div className="container mx-auto px-4" style={{ y }}>
         <motion.div

@@ -4,6 +4,7 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetClose,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, Heart, ShoppingCart } from "lucide-react";
@@ -28,6 +29,9 @@ export default function MobileMenu() {
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px]">
         <SheetTitle>Menu</SheetTitle>
+        <SheetDescription className="sr-only">
+          Navigation menu for mobile devices
+        </SheetDescription>
         <div className="flex justify-end items-center space-x-2 mb-4">
           <UserDropdownMenu />
 

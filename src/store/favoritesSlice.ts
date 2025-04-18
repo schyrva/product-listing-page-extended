@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
 interface FavoritesState {
-  items: number[]; // Array of product IDs
+  items: number[];
 }
 
 const initialState: FavoritesState = {
@@ -18,10 +18,8 @@ export const favoritesSlice = createSlice({
       const index = state.items.indexOf(productId);
 
       if (index !== -1) {
-        // Remove from favorites if already in favorites
         state.items.splice(index, 1);
       } else {
-        // Add to favorites if not in favorites
         state.items.push(productId);
       }
     },
@@ -44,7 +42,6 @@ export const favoritesSlice = createSlice({
   },
 });
 
-// Selectors
 export const selectFavoriteItems = (state: RootState) => state.favorites.items;
 export const selectFavoriteItemCount = (state: RootState) =>
   state.favorites.items.length;

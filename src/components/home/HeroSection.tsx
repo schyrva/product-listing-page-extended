@@ -87,7 +87,9 @@ export default function HeroSection() {
                     alt={slide.title}
                     fill
                     className="object-cover"
-                    priority
+                    priority={index === 0}
+                    sizes="100vw"
+                    loading={index === 0 ? "eager" : "lazy"}
                   />
                   <div
                     className={`absolute inset-0 bg-gradient-to-tr ${slide.color} opacity-60`}
@@ -140,7 +142,6 @@ export default function HeroSection() {
         )}
       </AnimatePresence>
 
-      {/* Navigation Arrows */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-10 z-20">
         <motion.button
           className="bg-white/20 backdrop-blur-sm rounded-full p-2 text-white hover:bg-white/40 transition-colors"
@@ -161,7 +162,6 @@ export default function HeroSection() {
         </motion.button>
       </div>
 
-      {/* Indicators */}
       <div className="absolute bottom-6 inset-x-0 flex justify-center gap-2 z-20">
         {slides.map((_, index) => (
           <motion.button

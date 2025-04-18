@@ -60,29 +60,24 @@ export default function TestimonialsSection() {
     ]
   );
 
-  // Use reduced motion preference hook
   const prefersReducedMotion = useReducedMotion();
 
-  // Use intersection observer to detect when component is in viewport
   const [sectionRef, isInView] = useIntersectionObserver({
     threshold: 0.2,
     rootMargin: "100px 0px",
     triggerOnce: false,
   });
 
-  // Detect if on mobile
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return false;
     return window.innerWidth < 768;
   }, []);
 
-  // Define handleNext before using it in useEffect
   const handleNext = useCallback(() => {
     setDirection(1);
     setCurrent((prev) => (prev + 1) % testimonials.length);
   }, []);
 
-  // Only auto-advance testimonials when in view, not paused, and not being touched
   useEffect(() => {
     if (!paused && isInView && !isTouching) {
       const timer = setTimeout(() => {
@@ -92,7 +87,6 @@ export default function TestimonialsSection() {
     }
   }, [current, paused, isInView, isTouching, handleNext]);
 
-  // Adapt animations based on reduced motion preference and device
   const transitions = useMemo(() => {
     if (prefersReducedMotion) {
       return {
@@ -115,7 +109,6 @@ export default function TestimonialsSection() {
         };
   }, [prefersReducedMotion, isMobile]);
 
-  // Adapt animations distance based on reduced motion preference and device
   const animationDistance = useMemo(() => {
     if (prefersReducedMotion) return 20;
     return isMobile ? 50 : 100;
@@ -132,7 +125,6 @@ export default function TestimonialsSection() {
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ) => {
-    // Adjust threshold based on screen size for better mobile experience
     const threshold = window.innerWidth < 640 ? 50 : 100;
 
     if (info.offset.x > threshold) {
@@ -144,7 +136,6 @@ export default function TestimonialsSection() {
     setIsTouching(false);
   };
 
-  // Handle touch start and end to pause auto-rotation during touch interaction
   const handleTouchStart = () => {
     setIsTouching(true);
     setPaused(true);
@@ -198,9 +189,7 @@ export default function TestimonialsSection() {
     },
   };
 
-  // Prevent touch events from causing page scroll while dragging
   useEffect(() => {
-    // Only add event listeners if the component is in view
     if (!isInView) return;
 
     const preventDefaultTouchMove = (e: TouchEvent) => {
@@ -218,7 +207,6 @@ export default function TestimonialsSection() {
     };
   }, [isInView]);
 
-  // Enhanced scroll reveal animation
   const scrollRevealVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -231,15 +219,12 @@ export default function TestimonialsSection() {
     },
   };
 
-  // Dynamic content for swipe instructions based on device
   const swipeInstructions = useMemo(() => {
     if (prefersReducedMotion) {
       return "Use buttons to navigate testimonials";
     }
-    return isMobile
-      ? "Swipe to navigate testimonials"
-      : "Swipe or drag to see more testimonials";
-  }, [prefersReducedMotion, isMobile]);
+    return "Swipe to navigate testimonials";
+  }, [prefersReducedMotion]);
 
   return (
     <section
@@ -289,6 +274,7 @@ export default function TestimonialsSection() {
                   rotate: prefersReducedMotion ? 0 : rotate,
                   scale,
                   backgroundImage: background,
+                  willChange: "transform",
                 }}
                 custom={direction}
                 variants={variants}

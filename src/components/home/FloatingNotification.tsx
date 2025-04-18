@@ -45,14 +45,12 @@ export default function FloatingNotification() {
   const bellRef = useRef(null);
 
   useEffect(() => {
-    // Show first notification after 3 seconds
     const initialTimer = setTimeout(() => {
       if (!dismissed) {
         setIsVisible(true);
       }
     }, 3000);
 
-    // Rotate through notifications
     const rotationTimer = setInterval(() => {
       if (isVisible && !dismissed) {
         setIsVisible(false);
@@ -69,7 +67,6 @@ export default function FloatingNotification() {
     };
   }, [isVisible, dismissed]);
 
-  // Use a separate effect to handle animation after the component is visible
   useEffect(() => {
     if (isVisible && bellRef.current) {
       animate(
@@ -81,7 +78,6 @@ export default function FloatingNotification() {
   }, [isVisible, animate]);
 
   const handleDismiss = () => {
-    // Slide out animation
     if (scope.current) {
       animate(
         scope.current,
@@ -92,7 +88,6 @@ export default function FloatingNotification() {
         setDismissed(true);
       });
     } else {
-      // Fallback if animation fails
       setIsVisible(false);
       setDismissed(true);
     }
@@ -100,7 +95,6 @@ export default function FloatingNotification() {
 
   const notification = recentPurchases[currentNotification];
 
-  // Variants for nested animations
   const containerVariants = {
     hidden: { x: -100, opacity: 0 },
     visible: {
@@ -163,6 +157,7 @@ export default function FloatingNotification() {
                     src={notification.image}
                     alt={notification.product}
                     fill
+                    sizes="100px"
                     className="object-cover"
                   />
                   <motion.div
@@ -221,7 +216,6 @@ export default function FloatingNotification() {
                 animate={{ width: "0%" }}
                 transition={{ duration: 8, ease: "linear" }}
                 onAnimationComplete={() => {
-                  // Optional pulsing effect when the timer is almost up
                   if (isVisible && scope.current) {
                     animate(
                       scope.current,

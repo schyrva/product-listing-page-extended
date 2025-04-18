@@ -70,7 +70,6 @@ export default function CartPage() {
     }, 0);
   };
 
-  // Show initial loading state only when first loading the cart
   if (isLoading && products.length === 0) {
     return (
       <div className="container mx-auto px-4 py-16">

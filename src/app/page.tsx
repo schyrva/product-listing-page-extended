@@ -1,7 +1,6 @@
 import { API } from "@/lib/api";
 import dynamic from "next/dynamic";
 
-// Dynamically import components to improve initial load performance
 const HeroSection = dynamic(() => import("@/components/home/HeroSection"), {
   ssr: true,
 });
@@ -29,7 +28,6 @@ const TestimonialsSection = dynamic(
   { ssr: true }
 );
 
-// Import the client component wrappers
 import ParallaxSectionWrapper from "@/components/home/ParallaxSectionWrapper";
 import FloatingNotificationWrapper from "@/components/home/FloatingNotificationWrapper";
 
@@ -41,31 +39,22 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Carousel */}
       <HeroSection />
 
-      {/* Parallax Text */}
       <ParallaxSectionWrapper />
 
-      {/* Animated Features Section */}
       <AnimatedFeatures />
 
-      {/* Category Section */}
       <CategorySection />
 
-      {/* Stats Section */}
       <StatsSection />
 
-      {/* Trending Products Slider */}
       <TrendingProducts products={products} />
 
-      {/* Testimonials Section */}
       <TestimonialsSection />
 
-      {/* Promotion Banner with Countdown */}
       <PromotionBanner />
 
-      {/* Floating Notification */}
       <FloatingNotificationWrapper />
     </div>
   );

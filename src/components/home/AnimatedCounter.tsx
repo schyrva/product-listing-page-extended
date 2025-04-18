@@ -24,7 +24,7 @@ export default function AnimatedCounter({
   useEffect(() => {
     if (isInView) {
       let start = 0;
-      const step = Math.ceil(value / 60); // Adjust this for smoother/faster animation
+      const step = Math.ceil(value / 60);
       const timer = setInterval(() => {
         start += step;
         if (start > value) {

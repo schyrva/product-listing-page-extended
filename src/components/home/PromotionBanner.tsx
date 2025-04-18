@@ -6,14 +6,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
-// Set end date to 7 days from now
 const getEndDate = () => {
   const endDate = new Date();
   endDate.setDate(endDate.getDate() + 7);
   return endDate;
 };
 
-// Initial empty time left to avoid hydration mismatches
 const initialTimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 export default function PromotionBanner() {
@@ -21,12 +19,10 @@ export default function PromotionBanner() {
   const [timeLeft, setTimeLeft] = useState(initialTimeLeft);
   const [animate, setAnimate] = useState(false);
 
-  // Initialize endDate and timeLeft after component mounts
   useEffect(() => {
     setEndDate(getEndDate());
   }, []);
 
-  // Calculate time left - memoized with useCallback to prevent infinite rerender
   const calculateTimeLeft = useCallback(() => {
     if (!endDate) return initialTimeLeft;
 
@@ -45,9 +41,8 @@ export default function PromotionBanner() {
     return newTimeLeft;
   }, [endDate]);
 
-  // Pulse animation for the second indicator
   useEffect(() => {
-    if (!endDate) return; // Only start animation after endDate is set
+    if (!endDate) return;
 
     const interval = setInterval(() => {
       setAnimate(true);
@@ -57,9 +52,8 @@ export default function PromotionBanner() {
     return () => clearInterval(interval);
   }, [endDate]);
 
-  // Update countdown - removed timeLeft from dependencies to prevent infinite loop
   useEffect(() => {
-    if (!endDate) return; // Only start countdown after endDate is set
+    if (!endDate) return;
 
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
@@ -68,7 +62,6 @@ export default function PromotionBanner() {
     return () => clearTimeout(timer);
   }, [endDate, calculateTimeLeft]);
 
-  // Initialize the first calculation after endDate is set
   useEffect(() => {
     if (endDate) {
       setTimeLeft(calculateTimeLeft());
@@ -158,6 +151,7 @@ export default function PromotionBanner() {
                 src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
                 alt="Special offer product"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                 className="object-contain"
               />
               <motion.div

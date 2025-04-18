@@ -104,6 +104,7 @@ export default function CategorySection() {
                     src={category.image}
                     alt={category.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 z-20 flex items-end p-6">

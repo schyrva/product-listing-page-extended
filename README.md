@@ -1,6 +1,6 @@
-# 🛒 BestShop
+# 🛒 Next.js E-Commerce Showcase
 
-A **modern e-commerce platform with rich UI features** built with **Next.js 15, Redux Toolkit, ShadCN UI, and Tailwind CSS**.
+A **modern e-commerce demo with comprehensive shopping experience** built with **Next.js 15, Redux Toolkit, ShadCN UI, and Tailwind CSS**.
 
 ---
 

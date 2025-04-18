@@ -8,7 +8,7 @@ import {
   RotateCcw,
   HeadphonesIcon,
 } from "lucide-react";
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, CSSProperties } from "react";
 
 interface Feature {
   icon: ReactNode;
@@ -70,19 +70,15 @@ const itemVariants = {
 function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
   const [hovered, setHovered] = useState(false);
 
-  // Mouse position for 3D effect
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Smooth the movement
   const springX = useSpring(x, { stiffness: 150, damping: 15 });
   const springY = useSpring(y, { stiffness: 150, damping: 15 });
 
-  // Transform x and y values to rotation
   const rotateX = useTransform(springY, [-100, 100], [10, -10]);
   const rotateY = useTransform(springX, [-100, 100], [-10, 10]);
 
-  // Handle mousemove to update x and y values
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!hovered) return;
 
@@ -90,7 +86,6 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
     const centerX = (rect.left + rect.right) / 2;
     const centerY = (rect.top + rect.bottom) / 2;
 
-    // Calculate mouse position relative to the center of the card
     x.set(event.clientX - centerX);
     y.set(event.clientY - centerY);
   };
@@ -129,10 +124,15 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
         className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 relative overflow-hidden"
         whileHover={{
           scale: 1.1,
-          backgroundColor: "hsl(var(--primary))",
-          color: "white",
+          backgroundColor: "rgba(var(--primary-rgb), 1)",
+          color: "rgb(250, 250, 250)",
         }}
         transition={{ type: "tween", duration: 0.3 }}
+        style={
+          {
+            "--primary-rgb": "94, 53, 177",
+          } as CSSProperties
+        }
       >
         {feature.icon}
         <motion.div
@@ -157,7 +157,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       </motion.div>
       <motion.h3
         className="text-xl font-semibold mb-2"
-        animate={hovered ? { scale: 1.05, color: "hsl(var(--primary))" } : {}}
+        animate={hovered ? { scale: 1.05, color: "rgb(94, 53, 177)" } : {}}
       >
         {feature.title}
       </motion.h3>
