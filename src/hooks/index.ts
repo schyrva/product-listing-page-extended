@@ -1,2 +1,2 @@
-export { useReducedMotion } from "./useReducedMotion";
-export { useIntersectionObserver } from "./useIntersectionObserver";
+export { useReducedMotion } from './useReducedMotion';
+export { useIntersectionObserver } from './useIntersectionObserver';

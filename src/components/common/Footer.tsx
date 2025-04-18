@@ -1,18 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { FOOTER_LINKS } from "@/constants/navigation";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  MessageCircle,
-  Phone,
-  SendHorizonal,
-} from "lucide-react";
-import { motion } from "framer-motion";
+import Link from 'next/link';
+import { FOOTER_LINKS } from '@/constants/navigation';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Github, Linkedin, Mail, MessageCircle, Phone, SendHorizonal } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -20,28 +13,28 @@ export default function Footer() {
   const iconLinks = [
     {
       icon: <Mail className="h-5 w-5" />,
-      href: "mailto:stanislav.chyrva@gmail.com",
-      label: "Email",
+      href: 'mailto:stanislav.chyrva@gmail.com',
+      label: 'Email',
     },
     {
       icon: <Phone className="h-5 w-5" />,
-      href: "tel:+380666023036",
-      label: "Phone",
+      href: 'tel:+380666023036',
+      label: 'Phone',
     },
     {
       icon: <MessageCircle className="h-5 w-5" />,
-      href: "https://t.me/StanislavChyrva",
-      label: "Telegram",
+      href: 'https://t.me/StanislavChyrva',
+      label: 'Telegram',
     },
     {
       icon: <Linkedin className="h-5 w-5" />,
-      href: "https://www.linkedin.com/in/stanislav-chyrva-3a3b24347/",
-      label: "LinkedIn",
+      href: 'https://www.linkedin.com/in/stanislav-chyrva-3a3b24347/',
+      label: 'LinkedIn',
     },
     {
       icon: <Github className="h-5 w-5" />,
-      href: "https://github.com/schyrva/product-listing-page-extended",
-      label: "GitHub",
+      href: 'https://github.com/schyrva/product-listing-page-extended',
+      label: 'GitHub',
     },
   ];
 
@@ -56,8 +49,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground max-w-xs">
-              Next.js e-commerce demo with Redux, filtering, and modern UI
-              components.
+              Next.js e-commerce demo with Redux, filtering, and modern UI components.
             </p>
 
             <div className="flex gap-4 pt-2">
@@ -83,7 +75,7 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {FOOTER_LINKS.map((item) => (
+              {FOOTER_LINKS.map(item => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -105,7 +97,7 @@ export default function Footer() {
             </h3>
             <p className="text-muted-foreground">Ivano-Frankivsk, Ukraine</p>
             <p className="text-muted-foreground">
-              Email:{" "}
+              Email:{' '}
               <a
                 href="mailto:stanislav.chyrva@gmail.com"
                 className="text-foreground hover:text-primary transition-colors"
@@ -114,7 +106,7 @@ export default function Footer() {
               </a>
             </p>
             <p className="text-muted-foreground">
-              Phone:{" "}
+              Phone:{' '}
               <a
                 href="tel:+380666023036"
                 className="text-foreground hover:text-primary transition-colors"
@@ -128,9 +120,7 @@ export default function Footer() {
             <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
               Newsletter
             </h3>
-            <p className="text-muted-foreground">
-              Subscribe to receive updates, news, and offers.
-            </p>
+            <p className="text-muted-foreground">Subscribe to receive updates, news, and offers.</p>
             <div className="flex gap-2 mt-4">
               <Input
                 type="email"

@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Heart } from "lucide-react";
-import { Button } from "../ui/button";
-import { toggleFavorite, selectIsFavorite } from "@/store/favoritesSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { Heart } from 'lucide-react';
+import { Button } from '../ui/button';
+import { toggleFavorite, selectIsFavorite } from '@/store/favoritesSlice';
 
 interface FavouriteButtonProps {
   productId?: number;
@@ -9,9 +9,7 @@ interface FavouriteButtonProps {
 
 const FavouriteButton = ({ productId }: FavouriteButtonProps) => {
   const dispatch = useDispatch();
-  const isFavourite = useSelector(
-    productId ? selectIsFavorite(productId) : () => false
-  );
+  const isFavourite = useSelector(productId ? selectIsFavorite(productId) : () => false);
 
   const handleToggleFavorite = () => {
     if (!productId) return;
@@ -28,8 +26,8 @@ const FavouriteButton = ({ productId }: FavouriteButtonProps) => {
       <Heart
         className={
           isFavourite
-            ? "text-red-700 fill-red-700"
-            : "text-gray-700 group-hover:text-red-600 transition-colors"
+            ? 'text-red-700 fill-red-700'
+            : 'text-gray-700 group-hover:text-red-600 transition-colors'
         }
       />
     </Button>

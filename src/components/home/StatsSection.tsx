@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import AnimatedCounter from "./AnimatedCounter";
-import { Package, ShoppingBag, Star, Users } from "lucide-react";
-import { useRef } from "react";
-import Link from "next/link";
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import AnimatedCounter from './AnimatedCounter';
+import { Package, ShoppingBag, Star, Users } from 'lucide-react';
+import { useRef } from 'react';
+import Link from 'next/link';
 
 export default function StatsSection() {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ['start end', 'end start'],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -20,34 +20,30 @@ export default function StatsSection() {
   });
 
   const y = useTransform(smoothProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(
-    smoothProgress,
-    [0, 0.3, 0.8, 1],
-    [0, 1, 1, 0.5]
-  );
+  const opacity = useTransform(smoothProgress, [0, 0.3, 0.8, 1], [0, 1, 1, 0.5]);
 
   const stats = [
     {
       value: 5000,
-      title: "Happy Customers",
+      title: 'Happy Customers',
       icon: <Users className="w-8 h-8 text-primary" />,
       delay: 0.2,
     },
     {
       value: 10000,
-      title: "Products Sold",
+      title: 'Products Sold',
       icon: <ShoppingBag className="w-8 h-8 text-primary" />,
       delay: 0.4,
     },
     {
       value: 2500,
-      title: "Products Available",
+      title: 'Products Available',
       icon: <Package className="w-8 h-8 text-primary" />,
       delay: 0.6,
     },
     {
       value: 4.8,
-      title: "Average Rating",
+      title: 'Average Rating',
       icon: <Star className="w-8 h-8 text-primary" />,
       delay: 0.8,
       withDecimal: true,
@@ -80,7 +76,7 @@ export default function StatsSection() {
       scale: 1,
       rotateX: 0,
       transition: {
-        type: "spring",
+        type: 'spring',
         stiffness: 200,
         damping: 20,
       },
@@ -91,7 +87,7 @@ export default function StatsSection() {
     <motion.section
       ref={sectionRef}
       className="py-16 border-y border-muted overflow-hidden relative"
-      style={{ opacity, position: "relative" }}
+      style={{ opacity, position: 'relative' }}
     >
       <motion.div className="container mx-auto px-4" style={{ y }}>
         <motion.div
@@ -105,7 +101,7 @@ export default function StatsSection() {
             <motion.span
               className="absolute -left-4 -right-4 h-3 bg-primary/10 bottom-2 -z-10 rounded"
               initial={{ width: 0 }}
-              whileInView={{ width: "116%" }}
+              whileInView={{ width: '116%' }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
             />
@@ -139,24 +135,20 @@ export default function StatsSection() {
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{
-                  type: "spring",
+                  type: 'spring',
                   stiffness: 200,
                   delay: stat.delay,
                 }}
                 whileHover={{
                   scale: 1.1,
                   rotate: [0, -10, 10, 0],
-                  backgroundColor: "hsl(var(--primary))",
-                  color: "white",
+                  backgroundColor: 'hsl(var(--primary))',
+                  color: 'white',
                 }}
               >
                 {stat.icon}
               </motion.div>
-              <AnimatedCounter
-                value={stat.value}
-                title={stat.title}
-                delay={stat.delay}
-              />
+              <AnimatedCounter value={stat.value} title={stat.title} delay={stat.delay} />
             </motion.div>
           ))}
         </motion.div>
@@ -173,18 +165,18 @@ export default function StatsSection() {
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 1.5, type: "spring" }}
+            transition={{ delay: 1.5, type: 'spring' }}
           >
             Join thousands of satisfied customers
           </motion.div>
           <div className="flex space-x-4 items-center mb-6">
-            {[1, 2, 3, 4, 5].map((star) => (
+            {[1, 2, 3, 4, 5].map(star => (
               <motion.div
                 key={star}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 1.5 + star * 0.1, type: "spring" }}
+                transition={{ delay: 1.5 + star * 0.1, type: 'spring' }}
               >
                 <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
               </motion.div>
@@ -207,9 +199,8 @@ export default function StatsSection() {
             viewport={{ once: true }}
             transition={{ delay: 2.2 }}
           >
-            &ldquo;Shopping with BestShop transformed my online shopping
-            experience. Their product quality and customer service are unmatched
-            in the industry!&rdquo;
+            &ldquo;Shopping with BestShop transformed my online shopping experience. Their product
+            quality and customer service are unmatched in the industry!&rdquo;
             <footer className="text-sm font-medium mt-2 text-foreground">
               — Emma Thompson, Verified Customer
             </footer>
@@ -219,7 +210,7 @@ export default function StatsSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 2.4, type: "spring" }}
+            transition={{ delay: 2.4, type: 'spring' }}
           >
             <Link href="/products">
               <motion.button

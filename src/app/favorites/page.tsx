@@ -1,19 +1,15 @@
-"use client";
+'use client';
 
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Heart, Trash, ChevronLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import {
-  selectFavoriteItems,
-  clearFavorites,
-  removeFromFavorites,
-} from "@/store/favoritesSlice";
-import { Product } from "@/types/product";
-import CartButton from "@/components/common/CartButton";
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Heart, Trash, ChevronLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { selectFavoriteItems, clearFavorites, removeFromFavorites } from '@/store/favoritesSlice';
+import { Product } from '@/types/product';
+import CartButton from '@/components/common/CartButton';
 
 export default function FavoritesPage() {
   const dispatch = useDispatch();
@@ -33,16 +29,14 @@ export default function FavoritesPage() {
         }
 
         const productsData = await Promise.all(
-          favoriteIds.map((id) =>
-            fetch(`https://fakestoreapi.com/products/${id}`).then((res) =>
-              res.json()
-            )
+          favoriteIds.map(id =>
+            fetch(`https://fakestoreapi.com/products/${id}`).then(res => res.json())
           )
         );
 
         setProducts(productsData);
       } catch (error) {
-        console.error("Error fetching favorite products:", error);
+        console.error('Error fetching favorite products:', error);
       } finally {
         setIsLoading(false);
       }
@@ -74,9 +68,7 @@ export default function FavoritesPage() {
           <div className="flex flex-col items-center justify-center space-y-4">
             <Heart className="h-16 w-16 text-muted-foreground" />
             <h2 className="text-2xl font-semibold">No favorites yet</h2>
-            <p className="text-muted-foreground">
-              Items you favorite will appear here.
-            </p>
+            <p className="text-muted-foreground">Items you favorite will appear here.</p>
             <Link href="/products">
               <Button className="mt-4">Browse Products</Button>
             </Link>
@@ -91,7 +83,7 @@ export default function FavoritesPage() {
       <h1 className="text-3xl font-bold mb-8">Your Favorites</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
+        {products.map(product => (
           <Card
             key={product.id}
             className="overflow-hidden transition-shadow duration-300 hover:shadow-lg"
@@ -119,9 +111,7 @@ export default function FavoritesPage() {
 
             <div className="p-4">
               <Link href={`/products/${product.id}`}>
-                <h3 className="font-semibold hover:text-primary line-clamp-1">
-                  {product.title}
-                </h3>
+                <h3 className="font-semibold hover:text-primary line-clamp-1">{product.title}</h3>
               </Link>
 
               <div className="flex justify-between items-center mt-2">

@@ -1,43 +1,42 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
     id: 1,
-    title: "Summer Collection 2024",
-    description:
-      "Discover our latest arrivals with fresh styles for the season",
-    buttonText: "Shop Now",
-    buttonLink: "/products",
+    title: 'Summer Collection 2024',
+    description: 'Discover our latest arrivals with fresh styles for the season',
+    buttonText: 'Shop Now',
+    buttonLink: '/products',
     image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    color: "from-purple-400 to-blue-500",
+      'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    color: 'from-purple-400 to-blue-500',
   },
   {
     id: 2,
-    title: "Special Offers",
-    description: "Limited time deals with up to 50% off on selected items",
-    buttonText: "View Offers",
-    buttonLink: "/products",
+    title: 'Special Offers',
+    description: 'Limited time deals with up to 50% off on selected items',
+    buttonText: 'View Offers',
+    buttonLink: '/products',
     image:
-      "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    color: "from-amber-400 to-red-500",
+      'https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    color: 'from-amber-400 to-red-500',
   },
   {
     id: 3,
-    title: "New Arrivals",
-    description: "Be the first to shop our newest styles and collections",
-    buttonText: "Explore",
-    buttonLink: "/products",
+    title: 'New Arrivals',
+    description: 'Be the first to shop our newest styles and collections',
+    buttonText: 'Explore',
+    buttonLink: '/products',
     image:
-      "https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    color: "from-green-400 to-teal-500",
+      'https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    color: 'from-green-400 to-teal-500',
   },
 ];
 
@@ -46,11 +45,11 @@ export default function HeroSection() {
   const [autoplay, setAutoplay] = useState(true);
 
   const nextSlide = () => {
-    setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    setCurrent(prev => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrent(prev => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
   useEffect(() => {
@@ -89,11 +88,9 @@ export default function HeroSection() {
                     className="object-cover"
                     priority={index === 0}
                     sizes="100vw"
-                    loading={index === 0 ? "eager" : "lazy"}
+                    loading={index === 0 ? 'eager' : 'lazy'}
                   />
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-tr ${slide.color} opacity-60`}
-                  />
+                  <div className={`absolute inset-0 bg-gradient-to-tr ${slide.color} opacity-60`} />
                 </div>
 
                 <div className="relative z-10 flex items-center justify-center h-full">
@@ -122,10 +119,7 @@ export default function HeroSection() {
                       transition={{ delay: 0.6, duration: 0.5 }}
                     >
                       <Link href={slide.buttonLink}>
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                           <Button
                             size="lg"
                             className="text-lg font-medium px-8 py-6 rounded-full bg-white text-gray-900 hover:bg-white/90"
@@ -167,7 +161,7 @@ export default function HeroSection() {
           <motion.button
             key={index}
             className={`h-2 rounded-full transition-all ${
-              index === current ? "w-8 bg-white" : "w-2 bg-white/50"
+              index === current ? 'w-8 bg-white' : 'w-2 bg-white/50'
             }`}
             onClick={() => setCurrent(index)}
             whileHover={{ scale: 1.2 }}

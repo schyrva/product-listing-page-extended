@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 
-const FloatingNotification = dynamic(() => import("./FloatingNotification"), {
+const FloatingNotification = dynamic(() => import('./FloatingNotification'), {
   ssr: false,
 });
 

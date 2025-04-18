@@ -1,0 +1,22 @@
+# Build artifacts
+.next/
+out/
+build/
+dist/
+
+# Dependencies
+node_modules/
+
+# Misc
+.github/
+.vscode/
+.DS_Store
+
+# Generated files
+coverage/
+public/
+
+# Package files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml 

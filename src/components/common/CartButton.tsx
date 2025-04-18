@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { ShoppingCart } from "lucide-react";
-import { Button } from "../ui/button";
-import { addToCart, removeFromCart, selectIsInCart } from "@/store/cartSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { ShoppingCart } from 'lucide-react';
+import { Button } from '../ui/button';
+import { addToCart, removeFromCart, selectIsInCart } from '@/store/cartSlice';
 
 interface CartButtonProps {
   productId?: number;
@@ -9,9 +9,7 @@ interface CartButtonProps {
 
 const CartButton = ({ productId }: CartButtonProps) => {
   const dispatch = useDispatch();
-  const isInCart = useSelector(
-    productId ? selectIsInCart(productId) : () => false
-  );
+  const isInCart = useSelector(productId ? selectIsInCart(productId) : () => false);
 
   const handleToggleCart = () => {
     if (!productId) return;
@@ -24,17 +22,12 @@ const CartButton = ({ productId }: CartButtonProps) => {
   };
 
   return (
-    <Button
-      variant="outline"
-      onClick={handleToggleCart}
-      disabled={!productId}
-      className="group"
-    >
+    <Button variant="outline" onClick={handleToggleCart} disabled={!productId} className="group">
       <ShoppingCart
         className={
           isInCart
-            ? "text-green-700 fill-green-700"
-            : "text-gray-700 group-hover:text-green-600 transition-colors"
+            ? 'text-green-700 fill-green-700'
+            : 'text-gray-700 group-hover:text-green-600 transition-colors'
         }
       />
     </Button>

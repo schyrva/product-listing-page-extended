@@ -1,23 +1,21 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Star } from "lucide-react";
-import { Product } from "@/types/product";
-import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import FavouriteButton from "../common/FavouriteButton";
-import CartButton from "../common/CartButton";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft, Star } from 'lucide-react';
+import { Product } from '@/types/product';
+import { useState } from 'react';
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
+import FavouriteButton from '../common/FavouriteButton';
+import CartButton from '../common/CartButton';
 
 interface ProductDetailsProps {
   initialProduct: Product;
 }
 
-export default function ProductDetails({
-  initialProduct,
-}: ProductDetailsProps) {
+export default function ProductDetails({ initialProduct }: ProductDetailsProps) {
   const router = useRouter();
   const [product] = useState<Product>(initialProduct);
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +25,7 @@ export default function ProductDetails({
       <div className="w-full md:w-1/2 max-w-2xl mx-auto">
         <div className="relative aspect-square rounded-lg overflow-hidden cursor-pointer">
           <Image
-            src={product.image || "/placeholder.svg"}
+            src={product.image || '/placeholder.svg'}
             alt={product.title}
             width={600}
             height={600}
@@ -56,9 +54,7 @@ export default function ProductDetails({
               <Star
                 key={i}
                 className={`w-5 h-5 ${
-                  i < Math.round(product.rating.rate)
-                    ? "text-accent fill-current"
-                    : "text-muted"
+                  i < Math.round(product.rating.rate) ? 'text-accent fill-current' : 'text-muted'
                 }`}
               />
             ))}
@@ -67,17 +63,10 @@ export default function ProductDetails({
             </span>
           </div>
         </div>
-        <p className="text-muted-foreground text-justify">
-          {product.description}
-        </p>
-        <p className="text-sm text-muted-foreground">
-          Category: {product.category}
-        </p>
+        <p className="text-muted-foreground text-justify">{product.description}</p>
+        <p className="text-sm text-muted-foreground">Category: {product.category}</p>
         <div className="flex flex-wrap gap-4 justify-between sm:justify-start">
-          <Button
-            onClick={() => router.back()}
-            className="flex items-center gap-2"
-          >
+          <Button onClick={() => router.back()} className="flex items-center gap-2">
             <ArrowLeft size={16} />
             Back to Products
           </Button>

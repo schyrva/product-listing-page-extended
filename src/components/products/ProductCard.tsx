@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { RatingStars } from "@/components/common/RatingStars";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import type { Product } from "@/types/product";
-import CartButton from "../common/CartButton";
-import FavouriteButton from "../common/FavouriteButton";
+import Image from 'next/image';
+import Link from 'next/link';
+import { RatingStars } from '@/components/common/RatingStars';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import type { Product } from '@/types/product';
+import CartButton from '../common/CartButton';
+import FavouriteButton from '../common/FavouriteButton';
 
 interface ProductCardProps {
   product: Product;
@@ -31,14 +31,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.title}
         </h2>
         <div className="flex justify-between items-center mb-2">
-          <p className="text-muted-foreground font-medium">
-            ${product.price.toFixed(2)}
-          </p>
+          <p className="text-muted-foreground font-medium">${product.price.toFixed(2)}</p>
           <div className="flex items-center">
             <RatingStars rating={product.rating.rate} />
-            <span className="ml-1 text-sm text-muted-foreground">
-              ({product.rating.count})
-            </span>
+            <span className="ml-1 text-sm text-muted-foreground">({product.rating.count})</span>
           </div>
         </div>
       </CardContent>

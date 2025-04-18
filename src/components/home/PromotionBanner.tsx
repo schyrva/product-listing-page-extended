@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
+import { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const getEndDate = () => {
   const endDate = new Date();
@@ -76,7 +76,7 @@ export default function PromotionBanner() {
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
+          transition={{ type: 'spring', stiffness: 50, damping: 20 }}
         >
           <div className="flex flex-col md:flex-row items-center">
             <div className="p-8 md:p-12 lg:p-16 w-full md:w-3/5 text-white">
@@ -97,8 +97,8 @@ export default function PromotionBanner() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
-                Get <span className="font-bold text-2xl">25% OFF</span> on all
-                products when you shop now. Don&apos;t miss this exclusive deal!
+                Get <span className="font-bold text-2xl">25% OFF</span> on all products when you
+                shop now. Don&apos;t miss this exclusive deal!
               </motion.p>
 
               <motion.div
@@ -111,11 +111,7 @@ export default function PromotionBanner() {
                 <TimeUnit value={timeLeft.days} label="Days" />
                 <TimeUnit value={timeLeft.hours} label="Hours" />
                 <TimeUnit value={timeLeft.minutes} label="Minutes" />
-                <TimeUnit
-                  value={timeLeft.seconds}
-                  label="Seconds"
-                  animate={animate}
-                />
+                <TimeUnit value={timeLeft.seconds} label="Seconds" animate={animate} />
               </motion.div>
 
               <motion.div
@@ -125,10 +121,7 @@ export default function PromotionBanner() {
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
                 <Link href="/products">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       size="lg"
                       className="bg-white text-primary hover:bg-white/90 font-medium px-8 py-7 rounded-full"
@@ -163,7 +156,7 @@ export default function PromotionBanner() {
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  repeatType: "reverse",
+                  repeatType: 'reverse',
                 }}
               >
                 25% OFF
@@ -192,9 +185,7 @@ function TimeUnit({
         animate={animate ? { scale: [1, 1.05, 1] } : {}}
         transition={{ duration: 0.5 }}
       >
-        <span className="text-2xl md:text-3xl font-bold">
-          {value < 10 ? `0${value}` : value}
-        </span>
+        <span className="text-2xl md:text-3xl font-bold">{value < 10 ? `0${value}` : value}</span>
       </motion.div>
       <p className="text-xs md:text-sm mt-1">{label}</p>
     </div>

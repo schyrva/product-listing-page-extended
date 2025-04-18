@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Home, RefreshCw } from "lucide-react";
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Home, RefreshCw } from 'lucide-react';
 
 export default function NotFound() {
   const containerVariants = {
@@ -22,7 +22,7 @@ export default function NotFound() {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: 'spring',
         stiffness: 300,
         damping: 24,
       },
@@ -36,7 +36,7 @@ export default function NotFound() {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: 'easeOut',
         delay: 0.2,
       },
     },
@@ -48,7 +48,7 @@ export default function NotFound() {
       rotate: 360,
       transition: {
         duration: 10,
-        ease: "linear",
+        ease: 'linear',
         repeat: Infinity,
       },
     },
@@ -82,19 +82,13 @@ export default function NotFound() {
           </motion.div>
         </div>
 
-        <motion.h1
-          className="text-3xl md:text-4xl font-bold mb-4"
-          variants={itemVariants}
-        >
+        <motion.h1 className="text-3xl md:text-4xl font-bold mb-4" variants={itemVariants}>
           Oops! Page Not Found
         </motion.h1>
 
-        <motion.p
-          className="text-lg text-muted-foreground mb-8"
-          variants={itemVariants}
-        >
-          Sorry, we couldn&apos;t find the page you&apos;re looking for. It
-          might have been moved or you&apos;ve mistyped the URL.
+        <motion.p className="text-lg text-muted-foreground mb-8" variants={itemVariants}>
+          Sorry, we couldn&apos;t find the page you&apos;re looking for. It might have been moved or
+          you&apos;ve mistyped the URL.
         </motion.p>
 
         <motion.div variants={itemVariants}>

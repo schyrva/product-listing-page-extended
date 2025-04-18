@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ProductSkeleton() {
   return (
@@ -16,10 +16,7 @@ export default function ProductSkeleton() {
 
         <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.from({ length: 6 }).map((_, index) => (
-            <div
-              key={index}
-              className="rounded-lg border shadow-sm overflow-hidden"
-            >
+            <div key={index} className="rounded-lg border shadow-sm overflow-hidden">
               <Skeleton className="w-full aspect-square" />
               <div className="p-4 space-y-3">
                 <Skeleton className="h-6 w-3/4" />

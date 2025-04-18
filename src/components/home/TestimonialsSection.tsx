@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import {
   motion,
   AnimatePresence,
@@ -9,34 +9,34 @@ import {
   useTransform,
   MotionConfig,
   PanInfo,
-} from "framer-motion";
-import { User, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { useReducedMotion, useIntersectionObserver } from "@/hooks";
+} from 'framer-motion';
+import { User, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useReducedMotion, useIntersectionObserver } from '@/hooks';
 
 const testimonials = [
   {
     id: 1,
-    name: "Emma Thompson",
-    role: "Fashion Designer",
-    text: "The quality of products exceeded my expectations. Shipping was fast and the customer service was excellent.",
+    name: 'Emma Thompson',
+    role: 'Fashion Designer',
+    text: 'The quality of products exceeded my expectations. Shipping was fast and the customer service was excellent.',
   },
   {
     id: 2,
-    name: "Daniel Moore",
-    role: "Tech Enthusiast",
+    name: 'Daniel Moore',
+    role: 'Tech Enthusiast',
     text: "I've purchased several electronic items and they're all high quality. The website made it easy to find exactly what I was looking for.",
   },
   {
     id: 3,
-    name: "Sophia Garcia",
-    role: "Interior Designer",
+    name: 'Sophia Garcia',
+    role: 'Interior Designer',
     text: "The attention to detail and product variety is impressive. I'll definitely be a returning customer for all my design needs.",
   },
   {
     id: 4,
-    name: "James Wilson",
-    role: "Photographer",
-    text: "Amazing selection of products with detailed descriptions. The checkout process was smooth and delivery was prompt.",
+    name: 'James Wilson',
+    role: 'Photographer',
+    text: 'Amazing selection of products with detailed descriptions. The checkout process was smooth and delivery was prompt.',
   },
 ];
 
@@ -54,9 +54,9 @@ export default function TestimonialsSection() {
     x,
     [-200, 0, 200],
     [
-      "linear-gradient(45deg, rgba(var(--primary), 0.15), rgba(var(--accent), 0.1))",
-      "none",
-      "linear-gradient(-45deg, rgba(var(--primary), 0.15), rgba(var(--accent), 0.1))",
+      'linear-gradient(45deg, rgba(var(--primary), 0.15), rgba(var(--accent), 0.1))',
+      'none',
+      'linear-gradient(-45deg, rgba(var(--primary), 0.15), rgba(var(--accent), 0.1))',
     ]
   );
 
@@ -64,18 +64,18 @@ export default function TestimonialsSection() {
 
   const [sectionRef, isInView] = useIntersectionObserver({
     threshold: 0.2,
-    rootMargin: "100px 0px",
+    rootMargin: '100px 0px',
     triggerOnce: false,
   });
 
   const isMobile = useMemo(() => {
-    if (typeof window === "undefined") return false;
+    if (typeof window === 'undefined') return false;
     return window.innerWidth < 768;
   }, []);
 
   const handleNext = useCallback(() => {
     setDirection(1);
-    setCurrent((prev) => (prev + 1) % testimonials.length);
+    setCurrent(prev => (prev + 1) % testimonials.length);
   }, []);
 
   useEffect(() => {
@@ -90,20 +90,20 @@ export default function TestimonialsSection() {
   const transitions = useMemo(() => {
     if (prefersReducedMotion) {
       return {
-        type: "tween" as const,
+        type: 'tween' as const,
         duration: 0.2,
-        ease: "easeOut",
+        ease: 'easeOut',
       };
     }
 
     return isMobile
       ? {
-          type: "tween" as const,
+          type: 'tween' as const,
           duration: 0.3,
-          ease: "easeOut",
+          ease: 'easeOut',
         }
       : {
-          type: "spring" as const,
+          type: 'spring' as const,
           stiffness: 300,
           damping: 30,
         };
@@ -116,15 +116,10 @@ export default function TestimonialsSection() {
 
   const handlePrev = useCallback(() => {
     setDirection(-1);
-    setCurrent(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
+    setCurrent(prev => (prev - 1 + testimonials.length) % testimonials.length);
   }, []);
 
-  const handleDragEnd = (
-    event: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
-  ) => {
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = window.innerWidth < 640 ? 50 : 100;
 
     if (info.offset.x > threshold) {
@@ -172,19 +167,19 @@ export default function TestimonialsSection() {
       opacity: 1,
       y: 0,
       transition: {
-        type: "tween",
+        type: 'tween',
         delay: prefersReducedMotion ? 0.1 : 0.3,
         duration: prefersReducedMotion ? 0.2 : 0.5,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
     exit: {
       opacity: 0,
       y: prefersReducedMotion ? 0 : 10,
       transition: {
-        type: "tween",
+        type: 'tween',
         duration: prefersReducedMotion ? 0.1 : 0.3,
-        ease: "easeIn",
+        ease: 'easeIn',
       },
     },
   };
@@ -198,12 +193,12 @@ export default function TestimonialsSection() {
       }
     };
 
-    document.addEventListener("touchmove", preventDefaultTouchMove, {
+    document.addEventListener('touchmove', preventDefaultTouchMove, {
       passive: false,
     });
 
     return () => {
-      document.removeEventListener("touchmove", preventDefaultTouchMove);
+      document.removeEventListener('touchmove', preventDefaultTouchMove);
     };
   }, [isInView]);
 
@@ -214,16 +209,16 @@ export default function TestimonialsSection() {
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.6,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
   };
 
   const swipeInstructions = useMemo(() => {
     if (prefersReducedMotion) {
-      return "Use buttons to navigate testimonials";
+      return 'Use buttons to navigate testimonials';
     }
-    return "Swipe to navigate testimonials";
+    return 'Swipe to navigate testimonials';
   }, [prefersReducedMotion]);
 
   return (
@@ -235,12 +230,10 @@ export default function TestimonialsSection() {
         <motion.div
           className="text-center mb-12"
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           variants={scrollRevealVariants}
         >
-          <h2 className="text-3xl md:text-4xl font-bold">
-            What Our Customers Say
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold">What Our Customers Say</h2>
           <motion.div
             className="w-20 h-1 bg-primary mx-auto mt-4"
             initial={{ width: 0 }}
@@ -252,7 +245,7 @@ export default function TestimonialsSection() {
           />
         </motion.div>
 
-        <MotionConfig reducedMotion={prefersReducedMotion ? "user" : "never"}>
+        <MotionConfig reducedMotion={prefersReducedMotion ? 'user' : 'never'}>
           <div
             className="relative max-w-4xl mx-auto perspective-[1000px] overflow-hidden"
             onPointerEnter={() => setPaused(true)}
@@ -264,7 +257,7 @@ export default function TestimonialsSection() {
             <AnimatePresence mode="wait" custom={direction} initial={false}>
               <motion.div
                 key={testimonials[current].id}
-                drag={prefersReducedMotion ? false : "x"}
+                drag={prefersReducedMotion ? false : 'x'}
                 dragControls={dragControls}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={isMobile ? 0.05 : 0.1}
@@ -274,7 +267,7 @@ export default function TestimonialsSection() {
                   rotate: prefersReducedMotion ? 0 : rotate,
                   scale,
                   backgroundImage: background,
-                  willChange: "transform",
+                  willChange: 'transform',
                 }}
                 custom={direction}
                 variants={variants}
@@ -284,7 +277,7 @@ export default function TestimonialsSection() {
                 className="bg-card rounded-lg shadow-lg p-6 md:p-8 relative cursor-grab active:cursor-grabbing touch-none will-change-transform select-none"
                 aria-live="polite"
                 aria-atomic="true"
-                whileTap={{ cursor: "grabbing" }}
+                whileTap={{ cursor: 'grabbing' }}
               >
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -303,14 +296,12 @@ export default function TestimonialsSection() {
                       <motion.div
                         className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary flex items-center justify-center"
                         whileHover={{ scale: prefersReducedMotion ? 1 : 1.1 }}
-                        transition={{ type: "spring", stiffness: 400 }}
+                        transition={{ type: 'spring', stiffness: 400 }}
                       >
                         <User className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                       </motion.div>
                       <div>
-                        <h4 className="font-semibold">
-                          {testimonials[current].name}
-                        </h4>
+                        <h4 className="font-semibold">{testimonials[current].name}</h4>
                         <p className="text-xs md:text-sm text-muted-foreground">
                           {testimonials[current].role}
                         </p>
@@ -325,7 +316,7 @@ export default function TestimonialsSection() {
               <motion.button
                 whileHover={{ scale: prefersReducedMotion ? 1 : 1.1 }}
                 whileTap={{ scale: prefersReducedMotion ? 0.95 : 0.9 }}
-                transition={{ type: "tween", duration: 0.2 }}
+                transition={{ type: 'tween', duration: 0.2 }}
                 onClick={handlePrev}
                 className="bg-primary/10 hover:bg-primary/20 rounded-full p-2 text-primary"
                 aria-label="Previous testimonial"
@@ -342,13 +333,13 @@ export default function TestimonialsSection() {
                       setCurrent(index);
                     }}
                     className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                      index === current ? "bg-primary" : "bg-muted"
+                      index === current ? 'bg-primary' : 'bg-muted'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
-                    aria-current={index === current ? "true" : "false"}
+                    aria-current={index === current ? 'true' : 'false'}
                     whileHover={{ scale: prefersReducedMotion ? 1 : 1.2 }}
                     whileTap={{ scale: prefersReducedMotion ? 0.95 : 0.9 }}
-                    transition={{ type: "tween", duration: 0.2 }}
+                    transition={{ type: 'tween', duration: 0.2 }}
                   />
                 ))}
               </div>
@@ -356,7 +347,7 @@ export default function TestimonialsSection() {
               <motion.button
                 whileHover={{ scale: prefersReducedMotion ? 1 : 1.1 }}
                 whileTap={{ scale: prefersReducedMotion ? 0.95 : 0.9 }}
-                transition={{ type: "tween", duration: 0.2 }}
+                transition={{ type: 'tween', duration: 0.2 }}
                 onClick={handleNext}
                 className="bg-primary/10 hover:bg-primary/20 rounded-full p-2 text-primary"
                 aria-label="Next testimonial"

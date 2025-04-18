@@ -1,23 +1,18 @@
-"use client";
+'use client';
 
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setFilter,
-  setSort,
-  type SortBy,
-  type SortOrder,
-} from "@/store/productsSlice";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter, setSort, type SortBy, type SortOrder } from '@/store/productsSlice';
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { PRODUCT_CATEGORIES, SORT_OPTIONS } from "@/constants/categories";
-import type { RootState } from "@/store/store";
+} from '@/components/ui/select';
+import { PRODUCT_CATEGORIES, SORT_OPTIONS } from '@/constants/categories';
+import type { RootState } from '@/store/store';
 
 const MAX_PRICE = 1000;
 
@@ -42,15 +37,13 @@ export default function FilterSort() {
         <Label>Category</Label>
         <Select
           value={filter.category}
-          onValueChange={(value) =>
-            dispatch(setFilter({ ...filter, category: value }))
-          }
+          onValueChange={value => dispatch(setFilter({ ...filter, category: value }))}
         >
           <SelectTrigger className="h-12 px-4">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
-            {PRODUCT_CATEGORIES.map((category) => (
+            {PRODUCT_CATEGORIES.map(category => (
               <SelectItem key={category.value} value={category.value}>
                 {category.label}
               </SelectItem>
@@ -72,10 +65,7 @@ export default function FilterSort() {
         <div className="flex justify-between text-sm">
           <span>${filter.priceRange[0]}</span>
           <span>
-            $
-            {filter.priceRange[1] === MAX_PRICE
-              ? `${MAX_PRICE}+`
-              : filter.priceRange[1]}
+            ${filter.priceRange[1] === MAX_PRICE ? `${MAX_PRICE}+` : filter.priceRange[1]}
           </span>
         </div>
       </div>
@@ -84,8 +74,8 @@ export default function FilterSort() {
         <Label>Sort By</Label>
         <Select
           value={`${sort.by}-${sort.order}`}
-          onValueChange={(value) => {
-            const [by, order] = value.split("-") as [SortBy, SortOrder];
+          onValueChange={value => {
+            const [by, order] = value.split('-') as [SortBy, SortOrder];
             dispatch(setSort({ by, order }));
           }}
         >
@@ -93,7 +83,7 @@ export default function FilterSort() {
             <SelectValue placeholder="Sort products" />
           </SelectTrigger>
           <SelectContent>
-            {SORT_OPTIONS.map((option) => (
+            {SORT_OPTIONS.map(option => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>

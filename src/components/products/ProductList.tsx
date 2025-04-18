@@ -1,11 +1,11 @@
-"use client";
-import { useMemo, useState } from "react";
-import ReactPaginate from "react-paginate";
-import ProductCard from "./ProductCard";
-import { useProducts } from "@/app/hooks/useProducts";
-import type { Product } from "@/types/product";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "../ui/button";
+'use client';
+import { useMemo, useState } from 'react';
+import ReactPaginate from 'react-paginate';
+import ProductCard from './ProductCard';
+import { useProducts } from '@/app/hooks/useProducts';
+import type { Product } from '@/types/product';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '../ui/button';
 
 export default function ProductList({ products }: { products?: Product[] }) {
   const { products: allProducts, filter, sort, searchTerm } = useProducts();
@@ -14,33 +14,27 @@ export default function ProductList({ products }: { products?: Product[] }) {
 
   const filteredProducts = useMemo(() => {
     const baseProducts = products || allProducts;
-    return baseProducts.filter((product) => {
-      const matchesCategory =
-        filter.category === "all" || product.category === filter.category;
+    return baseProducts.filter(product => {
+      const matchesCategory = filter.category === 'all' || product.category === filter.category;
       const matchesPrice =
-        product.price >= filter.priceRange[0] &&
-        product.price <= filter.priceRange[1];
-      const matchesSearch = product.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+        product.price >= filter.priceRange[0] && product.price <= filter.priceRange[1];
+      const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesPrice && matchesSearch;
     });
   }, [products, allProducts, filter, searchTerm]);
 
   const sortedProducts = useMemo(() => {
     return [...filteredProducts].sort((a, b) => {
-      if (sort.by === "price") {
-        return sort.order === "asc" ? a.price - b.price : b.price - a.price;
+      if (sort.by === 'price') {
+        return sort.order === 'asc' ? a.price - b.price : b.price - a.price;
       }
-      if (sort.by === "title") {
-        return sort.order === "asc"
+      if (sort.by === 'title') {
+        return sort.order === 'asc'
           ? a.title.localeCompare(b.title)
           : b.title.localeCompare(a.title);
       }
-      if (sort.by === "rating") {
-        return sort.order === "asc"
-          ? a.rating.rate - b.rating.rate
-          : b.rating.rate - a.rating.rate;
+      if (sort.by === 'rating') {
+        return sort.order === 'asc' ? a.rating.rate - b.rating.rate : b.rating.rate - a.rating.rate;
       }
       return 0;
     });
@@ -53,7 +47,7 @@ export default function ProductList({ products }: { products?: Product[] }) {
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentItems.map((product) => (
+        {currentItems.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
@@ -79,13 +73,11 @@ export default function ProductList({ products }: { products?: Product[] }) {
         pageRangeDisplayed={3}
         marginPagesDisplayed={1}
         breakLabel="..."
-        pageLabelBuilder={(page) => (
+        pageLabelBuilder={page => (
           <Button
-            variant={currentPage + 1 === page ? "default" : "outline"}
+            variant={currentPage + 1 === page ? 'default' : 'outline'}
             className={`h-10 w-10 flex items-center justify-center ${
-              currentPage + 1 === page
-                ? "bg-primary text-primary-foreground"
-                : ""
+              currentPage + 1 === page ? 'bg-primary text-primary-foreground' : ''
             }`}
           >
             {page}

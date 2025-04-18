@@ -5,16 +5,16 @@ import {
   SheetTrigger,
   SheetClose,
   SheetDescription,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Menu, Heart, ShoppingCart } from "lucide-react";
-import Link from "next/link";
-import { MAIN_NAV } from "@/constants/navigation";
-import ThemeSwitcher from "./ThemeSwitcher";
-import UserDropdownMenu from "./UserDropdownMenu";
-import { useSelector } from "react-redux";
-import { selectCartItemCount } from "@/store/cartSlice";
-import { selectFavoriteItemCount } from "@/store/favoritesSlice";
+} from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { Menu, Heart, ShoppingCart } from 'lucide-react';
+import Link from 'next/link';
+import { MAIN_NAV } from '@/constants/navigation';
+import ThemeSwitcher from './ThemeSwitcher';
+import UserDropdownMenu from './UserDropdownMenu';
+import { useSelector } from 'react-redux';
+import { selectCartItemCount } from '@/store/cartSlice';
+import { selectFavoriteItemCount } from '@/store/favoritesSlice';
 
 export default function MobileMenu() {
   const cartItemCount = useSelector(selectCartItemCount);
@@ -29,9 +29,7 @@ export default function MobileMenu() {
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px]">
         <SheetTitle>Menu</SheetTitle>
-        <SheetDescription className="sr-only">
-          Navigation menu for mobile devices
-        </SheetDescription>
+        <SheetDescription className="sr-only">Navigation menu for mobile devices</SheetDescription>
         <div className="flex justify-end items-center space-x-2 mb-4">
           <UserDropdownMenu />
 
@@ -65,12 +63,9 @@ export default function MobileMenu() {
         </div>
 
         <nav className="flex flex-col space-y-4">
-          {MAIN_NAV.map((item) => (
+          {MAIN_NAV.map(item => (
             <SheetClose asChild key={item.href}>
-              <Link
-                href={item.href}
-                className="text-gray-600 hover:text-primary"
-              >
+              <Link href={item.href} className="text-gray-600 hover:text-primary">
                 {item.label}
               </Link>
             </SheetClose>

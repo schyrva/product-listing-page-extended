@@ -1,20 +1,15 @@
-"use client";
+'use client';
 
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { ShoppingCart, Trash, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  selectCartItems,
-  updateQuantity,
-  removeFromCart,
-  clearCart,
-} from "@/store/cartSlice";
-import { Product } from "@/types/product";
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ShoppingCart, Trash, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { selectCartItems, updateQuantity, removeFromCart, clearCart } from '@/store/cartSlice';
+import { Product } from '@/types/product';
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -35,16 +30,14 @@ export default function CartPage() {
         }
 
         const productsData = await Promise.all(
-          productIds.map((id) =>
-            fetch(`https://fakestoreapi.com/products/${id}`).then((res) =>
-              res.json()
-            )
+          productIds.map(id =>
+            fetch(`https://fakestoreapi.com/products/${id}`).then(res => res.json())
           )
         );
 
         setProducts(productsData);
       } catch (error) {
-        console.error("Error fetching cart products:", error);
+        console.error('Error fetching cart products:', error);
       } finally {
         setIsLoading(false);
       }
@@ -112,7 +105,7 @@ export default function CartPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <div className="space-y-4">
-            {products.map((product) => {
+            {products.map(product => {
               const quantity = cartItems[product.id] || 0;
               return (
                 <Card key={product.id} className="p-4">
@@ -128,13 +121,9 @@ export default function CartPage() {
 
                     <div className="flex-grow">
                       <Link href={`/products/${product.id}`}>
-                        <h3 className="font-medium hover:text-primary truncate">
-                          {product.title}
-                        </h3>
+                        <h3 className="font-medium hover:text-primary truncate">{product.title}</h3>
                       </Link>
-                      <p className="text-sm text-muted-foreground">
-                        ${product.price.toFixed(2)}
-                      </p>
+                      <p className="text-sm text-muted-foreground">${product.price.toFixed(2)}</p>
                     </div>
 
                     <div className="flex items-center space-x-4 mt-4 sm:mt-0">
@@ -143,9 +132,7 @@ export default function CartPage() {
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() =>
-                            handleQuantityChange(product.id, quantity - 1)
-                          }
+                          onClick={() => handleQuantityChange(product.id, quantity - 1)}
                           disabled={quantity <= 1}
                         >
                           <ChevronLeft className="h-4 w-4" />
@@ -154,7 +141,7 @@ export default function CartPage() {
                         <Input
                           type="number"
                           value={quantity}
-                          onChange={(e) => {
+                          onChange={e => {
                             const value = parseInt(e.target.value);
                             if (!isNaN(value)) {
                               handleQuantityChange(product.id, value);
@@ -168,9 +155,7 @@ export default function CartPage() {
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() =>
-                            handleQuantityChange(product.id, quantity + 1)
-                          }
+                          onClick={() => handleQuantityChange(product.id, quantity + 1)}
                         >
                           <ChevronRight className="h-4 w-4" />
                         </Button>

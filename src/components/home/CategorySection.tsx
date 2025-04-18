@@ -1,36 +1,36 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const categories = [
   {
     id: 1,
-    name: "Electronics",
+    name: 'Electronics',
     image:
-      "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    slug: "electronics",
+      'https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    slug: 'electronics',
   },
   {
     id: 2,
-    name: "Jewelry",
+    name: 'Jewelry',
     image:
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    slug: "jewelery",
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    slug: 'jewelery',
   },
   {
     id: 3,
     name: "Men's Clothing",
     image:
-      "https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
     slug: "men's clothing",
   },
   {
     id: 4,
     name: "Women's Clothing",
     image:
-      "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
     slug: "women's clothing",
   },
 ];
@@ -50,7 +50,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 300,
       damping: 24,
     },
@@ -85,19 +85,15 @@ export default function CategorySection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
         >
-          {categories.map((category) => (
-            <motion.div
-              key={category.id}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-            >
+          {categories.map(category => (
+            <motion.div key={category.id} variants={itemVariants} whileHover={{ y: -10 }}>
               <Link href={`/products?category=${category.slug}`}>
                 <motion.div
                   className="rounded-xl overflow-hidden shadow-lg h-80 relative group cursor-pointer"
                   whileHover={{ scale: 1.03 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10" />
                   <Image
@@ -109,9 +105,7 @@ export default function CategorySection() {
                   />
                   <div className="absolute inset-0 z-20 flex items-end p-6">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2">
-                        {category.name}
-                      </h3>
+                      <h3 className="text-2xl font-bold text-white mb-2">{category.name}</h3>
                       <motion.span
                         className="inline-block px-4 py-1 bg-primary text-white rounded-full text-sm"
                         whileHover={{ scale: 1.1 }}

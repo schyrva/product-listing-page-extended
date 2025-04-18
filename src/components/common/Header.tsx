@@ -1,16 +1,16 @@
-"use client";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ShoppingCart, Heart } from "lucide-react";
-import { MAIN_NAV } from "@/constants/navigation";
-import MobileMenu from "./MobileMenu";
-import ThemeSwitcher from "./ThemeSwitcher";
-import UserDropdownMenu from "./UserDropdownMenu";
-import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
-import { selectCartItemCount } from "@/store/cartSlice";
-import { selectFavoriteItemCount } from "@/store/favoritesSlice";
+'use client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ShoppingCart, Heart } from 'lucide-react';
+import { MAIN_NAV } from '@/constants/navigation';
+import MobileMenu from './MobileMenu';
+import ThemeSwitcher from './ThemeSwitcher';
+import UserDropdownMenu from './UserDropdownMenu';
+import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { selectCartItemCount } from '@/store/cartSlice';
+import { selectFavoriteItemCount } from '@/store/favoritesSlice';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,18 +25,18 @@ export default function Header() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
   return (
     <motion.header
       className={`bg-background text-foreground sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "shadow-md py-2" : "shadow-sm py-4"
+        scrolled ? 'shadow-md py-2' : 'shadow-sm py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link
@@ -67,11 +67,7 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-3">
           <UserDropdownMenu />
 
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative">
             <Link href="/favorites">
               <Button
                 variant="ghost"
@@ -85,7 +81,7 @@ export default function Header() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{
-                      type: "spring",
+                      type: 'spring',
                       stiffness: 500,
                       damping: 15,
                     }}
@@ -97,11 +93,7 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative">
             <Link href="/cart">
               <Button
                 variant="ghost"
@@ -115,7 +107,7 @@ export default function Header() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{
-                      type: "spring",
+                      type: 'spring',
                       stiffness: 500,
                       damping: 15,
                     }}

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef, RefObject } from "react";
+import { useState, useEffect, useRef, RefObject } from 'react';
 
 interface IntersectionObserverOptions {
   root?: Element | null;
@@ -11,7 +11,7 @@ interface IntersectionObserverOptions {
 
 export function useIntersectionObserver<T extends Element>({
   root = null,
-  rootMargin = "0px",
+  rootMargin = '0px',
   threshold = 0,
   triggerOnce = false,
 }: IntersectionObserverOptions = {}): [RefObject<T | null>, boolean] {
@@ -21,7 +21,7 @@ export function useIntersectionObserver<T extends Element>({
   useEffect(() => {
     const node = ref.current;
 
-    if (!node || typeof IntersectionObserver === "undefined") return;
+    if (!node || typeof IntersectionObserver === 'undefined') return;
 
     const onIntersect = (entries: IntersectionObserverEntry[]) => {
       const entry = entries[0];

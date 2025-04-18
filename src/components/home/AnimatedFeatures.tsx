@@ -1,14 +1,8 @@
-"use client";
+'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import {
-  ShieldCheck,
-  Truck,
-  CreditCard,
-  RotateCcw,
-  HeadphonesIcon,
-} from "lucide-react";
-import { useState, ReactNode, CSSProperties } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { ShieldCheck, Truck, CreditCard, RotateCcw, HeadphonesIcon } from 'lucide-react';
+import { useState, ReactNode, CSSProperties } from 'react';
 
 interface Feature {
   icon: ReactNode;
@@ -19,28 +13,28 @@ interface Feature {
 const features: Feature[] = [
   {
     icon: <ShieldCheck className="w-10 h-10" />,
-    title: "Secure Shopping",
-    description: "All transactions are protected with advanced encryption",
+    title: 'Secure Shopping',
+    description: 'All transactions are protected with advanced encryption',
   },
   {
     icon: <Truck className="w-10 h-10" />,
-    title: "Fast Delivery",
-    description: "Get your products delivered within 2-3 business days",
+    title: 'Fast Delivery',
+    description: 'Get your products delivered within 2-3 business days',
   },
   {
     icon: <CreditCard className="w-10 h-10" />,
-    title: "Easy Payments",
-    description: "Multiple payment options available for your convenience",
+    title: 'Easy Payments',
+    description: 'Multiple payment options available for your convenience',
   },
   {
     icon: <RotateCcw className="w-10 h-10" />,
-    title: "Easy Returns",
-    description: "30-day money-back guarantee for all purchases",
+    title: 'Easy Returns',
+    description: '30-day money-back guarantee for all purchases',
   },
   {
     icon: <HeadphonesIcon className="w-10 h-10" />,
-    title: "24/7 Support",
-    description: "Our customer service team is always ready to help",
+    title: '24/7 Support',
+    description: 'Our customer service team is always ready to help',
   },
 ];
 
@@ -60,7 +54,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 100,
       damping: 10,
     },
@@ -106,8 +100,8 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
         rotateY: hovered ? rotateY : 0,
         z: hovered ? 50 : 0,
         boxShadow: hovered
-          ? "0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)"
-          : "",
+          ? '0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)'
+          : '',
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
@@ -115,7 +109,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       whileHover={{
         scale: 1.02,
         transition: {
-          type: "tween",
+          type: 'tween',
           duration: 0.3,
         },
       }}
@@ -124,13 +118,13 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
         className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 relative overflow-hidden"
         whileHover={{
           scale: 1.1,
-          backgroundColor: "rgba(var(--primary-rgb), 1)",
-          color: "rgb(250, 250, 250)",
+          backgroundColor: 'rgba(var(--primary-rgb), 1)',
+          color: 'rgb(250, 250, 250)',
         }}
-        transition={{ type: "tween", duration: 0.3 }}
+        transition={{ type: 'tween', duration: 0.3 }}
         style={
           {
-            "--primary-rgb": "94, 53, 177",
+            '--primary-rgb': '94, 53, 177',
           } as CSSProperties
         }
       >
@@ -148,7 +142,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
                     times: [0, 0.5, 1],
                     repeat: Infinity,
                     repeatDelay: 0.5,
-                    ease: "easeInOut",
+                    ease: 'easeInOut',
                   },
                 }
               : {}
@@ -157,7 +151,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       </motion.div>
       <motion.h3
         className="text-xl font-semibold mb-2"
-        animate={hovered ? { scale: 1.05, color: "rgb(94, 53, 177)" } : {}}
+        animate={hovered ? { scale: 1.05, color: 'rgb(94, 53, 177)' } : {}}
       >
         {feature.title}
       </motion.h3>

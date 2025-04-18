@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ShoppingCart, Heart, Eye } from "lucide-react";
-import { Product } from "@/types/product";
-import { useInView } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, selectIsInCart } from "@/store/cartSlice";
-import { toggleFavorite, selectIsFavorite } from "@/store/favoritesSlice";
+import { useRef, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ShoppingCart, Heart, Eye } from 'lucide-react';
+import { Product } from '@/types/product';
+import { useInView } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, selectIsInCart } from '@/store/cartSlice';
+import { toggleFavorite, selectIsFavorite } from '@/store/favoritesSlice';
 
 interface TrendingProductsProps {
   products: Product[];
@@ -75,8 +75,7 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            Discover our most popular products that everyone&apos;s talking
-            about
+            Discover our most popular products that everyone&apos;s talking about
           </motion.p>
         </div>
 
@@ -85,7 +84,7 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
           className="relative flex overflow-x-auto pb-8 no-scrollbar"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
-          style={{ scrollBehavior: "smooth" }}
+          style={{ scrollBehavior: 'smooth' }}
         >
           <div className="flex gap-6 pl-4">
             {products.map((product, index) => (
@@ -93,13 +92,11 @@ export default function TrendingProducts({ products }: TrendingProductsProps) {
                 key={product.id}
                 className="shrink-0 w-[280px]"
                 initial={{ opacity: 0, x: 50 }}
-                animate={
-                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }
-                }
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                 transition={{
                   duration: 0.5,
                   delay: index * 0.1,
-                  type: "tween",
+                  type: 'tween',
                 }}
               >
                 <ProductCard product={product} />
@@ -140,9 +137,7 @@ function ProductCard({ product }: { product: Product }) {
 
       <div className="p-4">
         <h3 className="font-medium text-base line-clamp-1">{product.title}</h3>
-        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-          {product.description}
-        </p>
+        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{product.description}</p>
 
         <div className="mt-4">
           <Link href={`/products/${product.id}`}>
@@ -156,13 +151,7 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-function AnimatedActions({
-  isVisible,
-  productId,
-}: {
-  isVisible: boolean;
-  productId: number;
-}) {
+function AnimatedActions({ isVisible, productId }: { isVisible: boolean; productId: number }) {
   return (
     <motion.div
       className="absolute inset-0 bg-black/40 flex items-center justify-center gap-3"
@@ -179,13 +168,7 @@ function AnimatedActions({
   );
 }
 
-function CartActionButton({
-  productId,
-  delay,
-}: {
-  productId: number;
-  delay: number;
-}) {
+function CartActionButton({ productId, delay }: { productId: number; delay: number }) {
   const dispatch = useDispatch();
   const isInCart = useSelector(selectIsInCart(productId));
 
@@ -193,15 +176,15 @@ function CartActionButton({
     <motion.button
       className={`rounded-full p-2 transition-colors ${
         isInCart
-          ? "bg-green-500 text-white hover:bg-green-600"
-          : "bg-white text-gray-900 hover:bg-primary hover:text-white"
+          ? 'bg-green-500 text-white hover:bg-green-600'
+          : 'bg-white text-gray-900 hover:bg-primary hover:text-white'
       }`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{
-        type: "tween",
+        type: 'tween',
         duration: 0.3,
         delay: delay,
       }}
@@ -212,13 +195,7 @@ function CartActionButton({
   );
 }
 
-function FavoriteActionButton({
-  productId,
-  delay,
-}: {
-  productId: number;
-  delay: number;
-}) {
+function FavoriteActionButton({ productId, delay }: { productId: number; delay: number }) {
   const dispatch = useDispatch();
   const isFavorite = useSelector(selectIsFavorite(productId));
 
@@ -226,15 +203,15 @@ function FavoriteActionButton({
     <motion.button
       className={`rounded-full p-2 transition-colors ${
         isFavorite
-          ? "bg-red-500 text-white hover:bg-red-600"
-          : "bg-white text-gray-900 hover:bg-primary hover:text-white"
+          ? 'bg-red-500 text-white hover:bg-red-600'
+          : 'bg-white text-gray-900 hover:bg-primary hover:text-white'
       }`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{
-        type: "tween",
+        type: 'tween',
         duration: 0.3,
         delay: delay,
       }}
@@ -245,13 +222,7 @@ function FavoriteActionButton({
   );
 }
 
-function ActionButton({
-  icon,
-  delay,
-}: {
-  icon: React.ReactNode;
-  delay: number;
-}) {
+function ActionButton({ icon, delay }: { icon: React.ReactNode; delay: number }) {
   return (
     <motion.button
       className="bg-white text-gray-900 rounded-full p-2 hover:bg-primary hover:text-white transition-colors"
@@ -260,7 +231,7 @@ function ActionButton({
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{
-        type: "tween",
+        type: 'tween',
         duration: 0.3,
         delay: delay,
       }}

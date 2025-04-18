@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useProducts } from "@/app/hooks/useProducts";
-import ProductList from "@/components/products/ProductList";
-import FilterSort from "@/components/filters/FilterSort";
-import SearchBar from "@/components/search/SearchBar";
-import ProductSkeleton from "@/components/ui/ProductSkeleton";
-import { useState, useEffect } from "react";
+import { useProducts } from '@/app/hooks/useProducts';
+import ProductList from '@/components/products/ProductList';
+import FilterSort from '@/components/filters/FilterSort';
+import SearchBar from '@/components/search/SearchBar';
+import ProductSkeleton from '@/components/ui/ProductSkeleton';
+import { useState, useEffect } from 'react';
 
 export default function ProductsPage() {
   const { products, isLoading } = useProducts();

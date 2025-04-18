@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { MessageCircle, X, Send } from "lucide-react";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { MessageCircle, X, Send } from 'lucide-react';
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   const toggleChat = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen(prev => !prev);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim()) {
-      console.log("Message sent:", message);
-      setMessage("");
+      console.log('Message sent:', message);
+      setMessage('');
     }
   };
 
@@ -30,7 +30,7 @@ export default function ChatWidget() {
             initial={{ opacity: 0, y: 50, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.8 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className="absolute bottom-16 right-0 bg-card rounded-xl shadow-2xl w-[350px] overflow-hidden border"
           >
             <div className="bg-primary text-white p-4 flex justify-between items-center">
@@ -46,9 +46,7 @@ export default function ChatWidget() {
                   <p className="text-sm">How can I help you today?</p>
                 </div>
                 <div className="bg-primary text-white rounded-lg p-3 max-w-[80%]">
-                  <p className="text-sm">
-                    Hi there! Have any questions about our products?
-                  </p>
+                  <p className="text-sm">Hi there! Have any questions about our products?</p>
                 </div>
               </div>
             </div>
@@ -58,7 +56,7 @@ export default function ChatWidget() {
                 type="text"
                 placeholder="Type your message..."
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={e => setMessage(e.target.value)}
                 className="flex-grow"
               />
               <Button type="submit" size="icon" disabled={!message.trim()}>
@@ -88,10 +86,10 @@ export default function ChatWidget() {
                 repeat: Infinity,
                 repeatDelay: 3,
                 times: [0, 0.5, 1],
-                type: "tween",
-                ease: "easeInOut",
+                type: 'tween',
+                ease: 'easeInOut',
               }
-            : { type: "spring", stiffness: 300 }
+            : { type: 'spring', stiffness: 300 }
         }
       >
         <MessageCircle className="h-6 w-6" />

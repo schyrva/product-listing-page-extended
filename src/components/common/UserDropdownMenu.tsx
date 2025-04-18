@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +8,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { User, LogOut, Settings, UserPlus } from "lucide-react";
-import { motion } from "framer-motion";
+} from '@/components/ui/dropdown-menu';
+import { User, LogOut, Settings, UserPlus } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function UserDropdownMenu() {
   return (

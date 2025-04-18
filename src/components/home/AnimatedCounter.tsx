@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView, useAnimation } from 'framer-motion';
 
 interface AnimatedCounterProps {
   value: number;
@@ -25,17 +25,20 @@ export default function AnimatedCounter({
     if (isInView) {
       let start = 0;
       const step = Math.ceil(value / 60);
-      const timer = setInterval(() => {
-        start += step;
-        if (start > value) {
-          setCount(value);
-          clearInterval(timer);
-        } else {
-          setCount(start);
-        }
-      }, (duration * 1000) / 60);
+      const timer = setInterval(
+        () => {
+          start += step;
+          if (start > value) {
+            setCount(value);
+            clearInterval(timer);
+          } else {
+            setCount(start);
+          }
+        },
+        (duration * 1000) / 60
+      );
 
-      controls.start("visible");
+      controls.start('visible');
 
       return () => clearInterval(timer);
     }
@@ -57,7 +60,7 @@ export default function AnimatedCounter({
         className="text-4xl md:text-5xl font-bold text-primary"
         initial={{ scale: 0.5 }}
         animate={isInView ? { scale: 1 } : { scale: 0.5 }}
-        transition={{ type: "spring", stiffness: 100, delay: delay + 0.3 }}
+        transition={{ type: 'spring', stiffness: 100, delay: delay + 0.3 }}
       >
         {count}
         <span className="text-2xl">+</span>
