@@ -43,7 +43,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="space-y-6">
-            <Link href="/" className="text-3xl italic font-bold">
+            <Link href="/" className="text-3xl font-bold">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                 NextCart
               </span>

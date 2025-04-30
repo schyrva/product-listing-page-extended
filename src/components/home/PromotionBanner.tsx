@@ -44,28 +44,15 @@ export default function PromotionBanner() {
   useEffect(() => {
     if (!endDate) return;
 
+    setTimeLeft(calculateTimeLeft());
+
     const interval = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
       setAnimate(true);
       setTimeout(() => setAnimate(false), 500);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [endDate]);
-
-  useEffect(() => {
-    if (!endDate) return;
-
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [endDate, calculateTimeLeft]);
-
-  useEffect(() => {
-    if (endDate) {
-      setTimeLeft(calculateTimeLeft());
-    }
   }, [endDate, calculateTimeLeft]);
 
   return (
