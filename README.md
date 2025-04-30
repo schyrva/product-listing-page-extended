@@ -7,7 +7,7 @@ Built with **Next.js 15**, **Redux Toolkit**, **Tailwind CSS**, and **ShadCN UI*
 
 ## 🎯 Live Demo
 
-🔗 [View Demo](https://product-listing-page-extended.vercel.app/)
+🔗 [View Demo](https://nextcart-app.vercel.app/)
 
 ---
 
@@ -67,7 +67,7 @@ The project uses Framer Motion for animations with a focus on:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/schyrva/product-listing-page-extended.git
+git clone https://github.com/schyrva/nextcart.git
 ```
 
 ### 2. Install dependencies

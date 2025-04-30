@@ -7,11 +7,11 @@ export const MAIN_NAV = [
 export const FOOTER_LINKS = [
   { href: '/products', label: 'Products' },
   {
-    href: 'https://github.com/schyrva/product-listing-page-extended#terms',
+    href: 'https://https://github.com/schyrva/nextcart#terms',
     label: 'Terms',
   },
   {
-    href: 'https://github.com/schyrva/product-listing-page-extended#privacy',
+    href: 'https://github.com/schyrva/nextcart#privacy',
     label: 'Privacy',
   },
 ] as const;

@@ -33,7 +33,7 @@ export default function Footer() {
     },
     {
       icon: <Github className="h-5 w-5" />,
-      href: 'https://github.com/schyrva/product-listing-page-extended',
+      href: 'https://github.com/schyrva/nextcart',
       label: 'GitHub',
     },
   ];
