@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="space-y-6">
             <Link href="/" className="text-3xl italic font-bold">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                BestShop
+                NextCart
               </span>
             </Link>
             <p className="text-muted-foreground max-w-xs">
@@ -140,7 +140,7 @@ export default function Footer() {
         <div className="my-10 border-t border-border opacity-30" />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© {currentYear} BestShop. All rights reserved.</p>
+          <p>© {currentYear} NextCart. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-primary transition-colors">
               Terms

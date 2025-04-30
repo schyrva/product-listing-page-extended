@@ -1,6 +1,7 @@
-# 🛒 Next.js E-Commerce Showcase
+# 🛒 NextCart – E-Commerce Demo Built with Next.js 15 & Redux
 
-A **modern e-commerce demo with comprehensive shopping experience** built with **Next.js 15, Redux Toolkit, ShadCN UI, and Tailwind CSS**.
+A modern and responsive e-commerce showcase featuring a rich shopping experience.  
+Built with **Next.js 15**, **Redux Toolkit**, **Tailwind CSS**, and **ShadCN UI**, this demo demonstrates clean architecture, smooth animations, and best practices in state and UI management.
 
 ---
 

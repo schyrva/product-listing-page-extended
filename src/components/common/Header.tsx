@@ -43,7 +43,7 @@ export default function Header() {
           href="/"
           className="text-3xl font-bold text-primary hover:opacity-90 transition-opacity"
         >
-          BestShop
+          NextCart
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">

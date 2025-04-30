@@ -97,7 +97,7 @@ export default function AboutPage() {
             <motion.h1 className="text-4xl md:text-6xl font-bold mb-6" variants={itemVariants}>
               About{' '}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                BestShop
+                NextCart
               </span>
             </motion.h1>
             <motion.p
@@ -136,7 +136,7 @@ export default function AboutPage() {
               <div className="aspect-square max-w-md relative rounded-2xl overflow-hidden border border-border shadow-xl">
                 <Image
                   src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="BestShop founding team"
+                  alt="NextCart founding team"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                   className="object-cover"
@@ -157,7 +157,7 @@ export default function AboutPage() {
                 <div className="h-1 w-20 bg-primary rounded mb-6" />
               </motion.div>
               <motion.p variants={itemVariants} className="text-muted-foreground">
-                Founded in 2022, BestShop began with a simple mission: to create an online shopping
+                Founded in 2022, NextCart began with a simple mission: to create an online shopping
                 experience that prioritizes quality, design, and customer satisfaction.
               </motion.p>
               <motion.p variants={itemVariants}>
@@ -167,7 +167,7 @@ export default function AboutPage() {
                 and customer experience.
               </motion.p>
               <motion.p variants={itemVariants}>
-                Today, BestShop serves customers worldwide, connecting them with products that
+                Today, NextCart serves customers worldwide, connecting them with products that
                 enhance their lives while maintaining our founding principles of excellence and
                 innovation.
               </motion.p>
@@ -247,7 +247,7 @@ export default function AboutPage() {
               </p>
               <p className="mt-4">
                 We envision a future where shopping online is not just convenient but delightful,
-                where every interaction with BestShop reinforces our commitment to excellence and
+                where every interaction with NextCart reinforces our commitment to excellence and
                 exceeds customer expectations.
               </p>
             </motion.div>
@@ -329,9 +329,9 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 100 }}
           >
-            <h2 className="text-3xl font-bold mb-6">Experience the BestShop Difference</h2>
+            <h2 className="text-3xl font-bold mb-6">Experience the NextCart Difference</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Join thousands of satisfied customers who trust BestShop for quality products and
+              Join thousands of satisfied customers who trust NextCart for quality products and
               exceptional service.
             </p>
             <Link href="/products">
