@@ -86,7 +86,6 @@ export default function HeroSection() {
                     alt={slide.title}
                     fill
                     className="object-cover"
-                    priority={index === 0}
                     sizes="100vw"
                     loading={index === 0 ? 'eager' : 'lazy'}
                   />

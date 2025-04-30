@@ -146,6 +146,7 @@ export default function PromotionBanner() {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                 className="object-contain"
+                priority
               />
               <motion.div
                 className="absolute top-10 right-10 bg-accent text-white rounded-full px-4 py-2 text-lg font-bold"
