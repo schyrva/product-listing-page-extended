@@ -15,16 +15,30 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
     const response = await fetch(API.getProduct(productId));
 
-    if (!response.ok) throw new Error('Product not found');
+    if (!response.ok) {
+      console.error(`Failed to fetch product ${productId}: ${response.statusText}`);
+      return notFound();
+    }
+
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error(`Received non-JSON response for product ${productId}`);
+      return notFound();
+    }
 
     const product: Product = await response.json();
+
+    if (!product) {
+      return notFound();
+    }
 
     return (
       <main className="container mx-auto px-4 py-8">
         <ProductDetails initialProduct={product} />
       </main>
     );
-  } catch {
+  } catch (error) {
+    console.error('Error fetching product:', error);
     return notFound();
   }
 }

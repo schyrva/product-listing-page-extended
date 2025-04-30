@@ -19,10 +19,27 @@ import ParallaxSectionWrapper from '@/components/home/ParallaxSectionWrapper';
 import FloatingNotificationWrapper from '@/components/home/FloatingNotificationWrapper';
 
 export default async function HomePage() {
-  const response = await fetch(API.getProducts(), {
-    next: { revalidate: 3600 },
-  });
-  const products = await response.json();
+  let products = [];
+
+  try {
+    const response = await fetch(API.getProducts(), {
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch products: ${response.statusText}`);
+    }
+
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      products = await response.json();
+    } else {
+      throw new Error('Received non-JSON response from API');
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    // Return empty products array rather than failing the build
+  }
 
   return (
     <div className="min-h-screen">

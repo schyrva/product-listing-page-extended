@@ -38,6 +38,16 @@ const initialState: ProductsState = {
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
   const response = await fetch('https://fakestoreapi.com/products');
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch products: ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get('content-type');
+  if (!contentType || !contentType.includes('application/json')) {
+    throw new Error('Received non-JSON response from API');
+  }
+
   return (await response.json()) as Product[];
 });
 

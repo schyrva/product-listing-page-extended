@@ -12,6 +12,10 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    // Added to help with potential JSON parsing issues during prerendering
+    optimizeServerReact: true,
+  },
 };
 
 module.exports = nextConfig;
