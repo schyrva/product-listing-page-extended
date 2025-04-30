@@ -138,6 +138,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
                   scale: [0, 1.5, 1],
                   opacity: [0, 0.5, 0],
                   transition: {
+                    type: 'tween',
                     duration: 1.5,
                     times: [0, 0.5, 1],
                     repeat: Infinity,

@@ -144,6 +144,7 @@ export default function StatsSection() {
                   rotate: [0, -10, 10, 0],
                   backgroundColor: 'hsl(var(--primary))',
                   color: 'white',
+                  transition: { type: 'tween', duration: 0.6 },
                 }}
               >
                 {stat.icon}

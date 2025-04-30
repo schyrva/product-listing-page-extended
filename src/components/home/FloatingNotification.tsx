@@ -71,7 +71,7 @@ export default function FloatingNotification() {
       animate(
         bellRef.current,
         { rotate: [0, 15, -15, 10, -10, 5, -5, 0] },
-        { duration: 0.8, ease: 'easeInOut' }
+        { duration: 0.8, ease: 'easeInOut', type: 'tween' }
       );
     }
   }, [isVisible, animate]);
@@ -204,7 +204,7 @@ export default function FloatingNotification() {
                     animate(
                       scope.current,
                       { x: [0, 5, -5, 5, -5, 0] },
-                      { duration: 0.5, ease: 'easeInOut' }
+                      { duration: 0.5, ease: 'easeInOut', type: 'tween' }
                     );
                   }
                 }}

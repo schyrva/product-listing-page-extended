@@ -155,6 +155,7 @@ export default function PromotionBanner() {
                   rotate: [0, -5, 5, 0],
                 }}
                 transition={{
+                  type: 'tween',
                   duration: 2,
                   repeat: Infinity,
                   repeatType: 'reverse',
@@ -184,7 +185,7 @@ function TimeUnit({
       <motion.div
         className="bg-white/20 backdrop-blur-sm rounded-xl p-3 w-16 md:w-20 h-16 md:h-20 flex items-center justify-center"
         animate={animate ? { scale: [1, 1.05, 1] } : {}}
-        transition={{ duration: 0.5 }}
+        transition={animate ? { type: 'tween', duration: 0.5 } : {}}
       >
         <span className="text-2xl md:text-3xl font-bold">{value < 10 ? `0${value}` : value}</span>
       </motion.div>

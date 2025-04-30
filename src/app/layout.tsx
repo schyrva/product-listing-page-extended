@@ -9,8 +9,8 @@ import '@/app/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Product Listing Page Test Task',
-  description: 'Product Listing Page using Next.js, Redux Toolkit, Shadcn UI, and Tailwind CSS',
+  title: 'NextCart – Modern E-Commerce Demo',
+  description: 'NextCart is a modern e-commerce demo built with Next.js 15, Redux Toolkit and Tailwind CSS. Features include product filtering, cart, favorites, dark mode, animations, and responsive design.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
